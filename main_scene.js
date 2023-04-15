@@ -11,6 +11,7 @@ var MainScene = new Phaser.Class({
         this.load.image('space_back', 'assets/space_back2.jpg');
         this.load.image('moon', 'assets/moon.png');
         this.load.image('button', 'assets/Button.png');
+        this.load.image('cat', 'assets/cat.png');
     },
 
     create: function() {
