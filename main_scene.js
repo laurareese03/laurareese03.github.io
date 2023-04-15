@@ -27,11 +27,11 @@ var MainScene = new Phaser.Class({
         cats_per_sec = 0;
 
         // Cheese Visual
-        const moon_img = this.add.image(640, 200, 'moon').setOrigin(0.5);
-        const cheeseBtn = this.add.text(640, 200, 'cheese', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
+        const moon_img = this.add.image(640, 250, 'moon').setOrigin(0.5);
+        moon_img.scale = 3.5; 
 
-        cheeseBtn.setInteractive();
-        cheeseBtn.on('pointerdown', () => this.onClickCheese() );
+        moon_img.setInteractive();
+        moon_img.on('pointerdown', () => this.onClickCheese() );
 
         // building visual
         const upgradebuildingBtn = this.add.text(640, 300, 'upgrade building', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
@@ -40,9 +40,6 @@ var MainScene = new Phaser.Class({
 
         cheeseCounter = this.add.text(640, 250, cheese_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
         catCounter = this.add.text(640, 450, cat_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-
-        // Stats box
-        const statsBox = this.add.text(640, 500, 'stat', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
 
         // set up all objects for buying
         this.createAutoClickers();
