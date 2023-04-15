@@ -7,25 +7,6 @@ var MainScene = new Phaser.Class({
     },
     preload: function() {
     },
-    create: function() {
-        createAutoClickers();
-        createBuildings();
-        createCatInstants();
-        createCatProgressives();
-        var text = this.add.text(
-            640, 
-            360, 
-            "Main Scene", 
-            {
-                fontSize: 50,
-                color: "#000000",
-                fontStyle: "bold"
-            }
-        ).setOrigin(0.5);
-    
-    },
-    update: function() {},
-
     createAutoClickers: function() {
         const forkAC = new AutoClick(1, 1, 1, 1, True);
         const spoonAC = new AutoClick(1, 1, 1, 1, True);
@@ -66,7 +47,27 @@ var MainScene = new Phaser.Class({
         const keyboardCP = new CatProgressive(1, 1, 1, True);
         const scratcherCP = new CatProgressive(1, 1, 1, True);
         const treeCP = new CatProgressive(1, 1, 1, True);
-    }
+    },
+    create: function() {
+        createAutoClickers();
+        createBuildings();
+        createCatInstants();
+        createCatProgressives();
+        var text = this.add.text(
+            640, 
+            360, 
+            "Main Scene", 
+            {
+                fontSize: 50,
+                color: "#000000",
+                fontStyle: "bold"
+            }
+        ).setOrigin(0.5);
+    
+    },
+    update: function() {}
+
+
 
 });
 
