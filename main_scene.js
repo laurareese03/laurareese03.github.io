@@ -2,7 +2,7 @@
 
 var cheeseCounter, catCounter, autoclick_tiers, autoclickers, next_autoclick_tier_index;
 var forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC
-var upgradebuildingBtn;
+var upgradebuildingBtn, upgradebuildingPrice;
 var MainScene = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize: function() {
@@ -26,6 +26,14 @@ var MainScene = new Phaser.Class({
         this.load.image('drill', 'assets/drill.png');
         this.load.image('excavator', 'assets/excavator.png');
         this.load.image('cheesemine', 'assets/cheesemine.png');
+        // locked autoclickers
+        this.load.image('lockedspoon', 'assets/spoon_locked.png');
+        this.load.image('lockedshovel', 'assets/shovel_locked.png');
+        this.load.image('lockedpick', 'assets/pickaxe_pickaxe.png');
+        this.load.image('lockedjack', 'assets/jackhammer_locked.png');
+        this.load.image('lockeddrill', 'assets/drill_locked.png');
+        this.load.image('lockedexca', 'assets/excavator_locked.png');
+        this.load.image('lockedmine', 'assets/cheesemine_locked.png');
         // building upgrades
         this.load.image('cardboardbox', 'assets/cardboard_box.png');
         this.load.image('cathouse', 'assets/cathouse.png');
@@ -37,7 +45,7 @@ var MainScene = new Phaser.Class({
         // cat items - progressive
         this.load.image('ball', 'assets/ball.png');
         this.load.image('mouse', 'assets/mouse.png');
-        this.load.image('hairtie', 'assets/hairtie.png');
+        this.load.image('hairtie', 'assets/mouse.png');
         this.load.image('twisttie', 'assets/twist_tie.png');
         this.load.image('laserpointer', 'assets/laser_pointer.png');
         this.load.image('cushion', 'assets/cushion.png');
@@ -88,10 +96,19 @@ var MainScene = new Phaser.Class({
       upgradebuildingBtn.setInteractive();
       upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
 
-      cheeseCounter = this.add.text(640, 515, "Cheese: " + cheese_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
-      catCounter = this.add.text(640, 35, "Cats: " + cat_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      // building visual
+      upgradebuildingBtn = this.add.image(640, 650, buildings[curr_building].image, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      upgradebuildingBtn.setInteractive();
+      upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
 
-      cheesepersecCounter = this.add.text(640, 575, "Cheese/sec: " + cheese_per_sec, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      // building visual
+      upgradebuildingBtn = this.add.image(640, 650, buildings[curr_building].image, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      upgradebuildingBtn.setInteractive();
+      upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
+      upgradebuildingPrice = this.add.text(720, 672, buildings[curr_building].cost, { fill: '#000', fontSize: 15, fontFamily: "American Typewriter" }).setOrigin(0.5);
+
+      cheeseCounter = this.add.text(640, 515, "Cheese: " + cheese_amount + " (" + cheese_per_sec + "/sec)", { fill: '#fff', fontSize: 40, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      catCounter = this.add.text(640, 35, "Cats: " + Math.floor(cat_amount) + " (" + Math.round(cats_per_sec*60) + "/min)", { fill: '#fff', fontSize: 40, fontFamily: "American Typewriter" }).setOrigin(0.5);
       autoclickers = [forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC]
       next_autoclick_tier_index = 1;
 
@@ -99,9 +116,8 @@ var MainScene = new Phaser.Class({
     
     },
     update: function() {
-      cheeseCounter.setText("Cheese: " + cheese_amount);
-      catCounter.setText("Cats: " + Math.floor(cat_amount));
-      cheesepersecCounter.setText("Cheese/sec: " + cheese_per_sec);
+      cheeseCounter.setText("Cheese: " + cheese_amount + " (" + cheese_per_sec + "/sec)");
+      catCounter.setText("Cats: " + Math.floor(cat_amount) + " (" + Math.round(cats_per_sec*60) + "/min)");
       // autoclicker counters
       forkCounter.setText(forkAC.owned);
       spoonCounter.setText(spoonAC.owned);
@@ -123,8 +139,8 @@ var MainScene = new Phaser.Class({
       keyboardCounter.setText(keyboardCP.owned);
       scratcherCounter.setText(scratcherCP.owned);
       treeCounter.setText(treeCP.owned);
-      
       upgradebuildingBtn.setTexture(buildings[curr_building].image);
+      upgradebuildingPrice.setText(buildings[curr_building].cost);
     },
 
     // onclick of cheese
@@ -216,14 +232,14 @@ var MainScene = new Phaser.Class({
 
     createAutoClickers: function() {
         forkAC = new AutoClick(1, autoclick_tiers[0], 1, 0, true);
-        spoonAC = new AutoClick(3, autoclick_tiers[1], 1, 0, false);
-        sporkAC = new AutoClick(5, autoclick_tiers[2], 1, 0, false);
-        shovelAC = new AutoClick(10, autoclick_tiers[3], 1, 0, false);
-        pickaxeAC = new AutoClick(50, autoclick_tiers[4], 1, 0, false);
-        jackhammerAC = new AutoClick(100, autoclick_tiers[5], 1, 0, false);
+        spoonAC = new AutoClick(3, autoclick_tiers[1], 5, 0, false);
+        sporkAC = new AutoClick(5, autoclick_tiers[2], 10, 0, false);
+        shovelAC = new AutoClick(10, autoclick_tiers[3], 20, 0, false);
+        pickaxeAC = new AutoClick(50, autoclick_tiers[4], 50, 0, false);
+        jackhammerAC = new AutoClick(100, autoclick_tiers[5], 75, 0, false);
         drillAC = new AutoClick(500, autoclick_tiers[6], 1, 0, false);
-        excavatorAC = new AutoClick(1000, autoclick_tiers[7], 1, 0, false);
-        cheesemineAC = new AutoClick(5000, autoclick_tiers[8], 1, 0, false);
+        excavatorAC = new AutoClick(1000, autoclick_tiers[7], 150, 0, false);
+        cheesemineAC = new AutoClick(5000, autoclick_tiers[8], 250, 0, false);
 
         // FORK
         forkCounter = this.add.text(35, 60, forkAC.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
@@ -240,7 +256,7 @@ var MainScene = new Phaser.Class({
         spoonCost = this.add.text(290, 120, spoonAC.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
         const spoon_cheese = this.add.image(320, 135, 'moon').setOrigin(0.5);
         spoon_cheese.scale = 0.25; 
-        const spoonDisplay = this.add.image(175, 135, 'spoon').setOrigin(0.5);
+        const spoonDisplay = this.add.image(175, 135, 'lockedspoon').setOrigin(0.5);
         spoonDisplay.scale = 1.4;
         spoonDisplay.setInteractive();
         spoonDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(spoonAC) );
@@ -250,7 +266,7 @@ var MainScene = new Phaser.Class({
         sporkCost = this.add.text(290, 195, sporkAC.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" })
         const spork_cheese = this.add.image(320, 210, 'moon').setOrigin(0.5);
         spork_cheese.scale = 0.25; 
-        const sporkDisplay = this.add.image(175, 210, 'spoon').setOrigin(0.5);
+        const sporkDisplay = this.add.image(175, 210, 'lockedspoon').setOrigin(0.5);
         sporkDisplay.scale = 1.4;
         sporkDisplay.setInteractive();
         sporkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(sporkAC) ).setOrigin(0.5);
@@ -260,7 +276,7 @@ var MainScene = new Phaser.Class({
         shovelCost = this.add.text(290, 270, shovelAC.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
         const shovel_cheese = this.add.image(335, 285, 'moon').setOrigin(0.5);
         shovel_cheese.scale = 0.25; 
-        const shovelDisplay = this.add.image(175, 285, 'shovel').setOrigin(0.5);
+        const shovelDisplay = this.add.image(175, 285, 'lockedshovel').setOrigin(0.5);
         shovelDisplay.scale = 1.4;
         shovelDisplay.setInteractive();
         shovelDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(shovelAC) );
@@ -271,7 +287,7 @@ var MainScene = new Phaser.Class({
         pickaxeCost = this.add.text(290, 345, pickaxeAC.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
         const pickaxe_cheese = this.add.image(335, 360, 'moon').setOrigin(0.5);
         pickaxe_cheese.scale = 0.25; 
-        const pickaxeDisplay = this.add.image(175, 360, 'pickaxe').setOrigin(0.5);
+        const pickaxeDisplay = this.add.image(175, 360, 'lockedpick').setOrigin(0.5);
         pickaxeDisplay.scale = 1.4;
         pickaxeDisplay.setInteractive();
         pickaxeDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(pickaxeAC) );
@@ -281,7 +297,7 @@ var MainScene = new Phaser.Class({
         jackhammerCost = this.add.text(290, 420, jackhammerAC.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
         const jackhammer_cheese = this.add.image(350, 435, 'moon').setOrigin(0.5);
         jackhammer_cheese.scale = 0.25; 
-        const jackhammerDisplay = this.add.image(175, 435, 'jackhammer').setOrigin(0.5);
+        const jackhammerDisplay = this.add.image(175, 435, 'lockedjack').setOrigin(0.5);
         jackhammerDisplay.scale = 1.4;
         jackhammerDisplay.setInteractive();
         jackhammerDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(jackhammerAC) ).setOrigin(0.5);
@@ -291,7 +307,7 @@ var MainScene = new Phaser.Class({
         drillCost = this.add.text(290, 495, drillAC.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
         const drill_cheese = this.add.image(350, 510, 'moon').setOrigin(0.5);
         drill_cheese.scale = 0.25; 
-        const drillDisplay = this.add.image(175, 510, 'drill').setOrigin(0.5);
+        const drillDisplay = this.add.image(175, 510, 'lockeddrill').setOrigin(0.5);
         drillDisplay.scale = 1.4;
         drillDisplay.setInteractive();
         drillDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(drillAC) ).setOrigin(0.5);
@@ -301,7 +317,7 @@ var MainScene = new Phaser.Class({
         excavatorCost = this.add.text(290, 570, excavatorAC.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
         const excavator_cheese = this.add.image(365, 585, 'moon').setOrigin(0.5);
         excavator_cheese.scale = 0.25; 
-        const excavatorDisplay = this.add.image(175, 585, 'excavator').setOrigin(0.5);
+        const excavatorDisplay = this.add.image(175, 585, 'lockedexca').setOrigin(0.5);
         excavatorDisplay.scale = 1.4;
         excavatorDisplay.setInteractive();
         excavatorDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(excavatorAC) ).setOrigin(0.5);
@@ -311,7 +327,7 @@ var MainScene = new Phaser.Class({
         cheesemineCost = this.add.text(290, 645, cheesemineAC.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
         const cheesemine_cheese = this.add.image(365, 660, 'moon').setOrigin(0.5);
         cheesemine_cheese.scale = 0.25; 
-        const cheesemineDisplay = this.add.image(175, 660, 'cheesemine').setOrigin(0.5);
+        const cheesemineDisplay = this.add.image(175, 660, 'lockedmine').setOrigin(0.5);
         cheesemineDisplay.scale = 1.4;
         cheesemineDisplay.setInteractive();
         cheesemineDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(cheesemineAC) ).setOrigin(0.5);
@@ -368,7 +384,7 @@ var MainScene = new Phaser.Class({
         ballCost = this.add.text(957, 45, ballCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
         const ball_cheese = this.add.image(985, 60, 'moon').setOrigin(0.5);
         ball_cheese.scale = 0.25; 
-        const ballDisplay = this.add.image(1110, 60, 'ball').setOrigin(0.5);
+        const ballDisplay = this.add.image(1100, 60, 'ball').setOrigin(0.5);
         ballDisplay.scale = 1.4;
         ballDisplay.setInteractive();
         ballDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(ballCP) );
@@ -385,6 +401,8 @@ var MainScene = new Phaser.Class({
         mouseDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(mouseCP) );
 
         // HAIR TIE
+        const hairtieCP = new CatProgressive(0, 50, 0.17, 0, true);
+        const hairtieDisplay = this.add.text(1100, 350, 'Hair Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         hairtieCP = new CatProgressive(0, 50, 0.17, 0, true);
         hairtieCounter = this.add.text(1245, 210, hairtieCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
         hairtieCost = this.add.text(940, 195, hairtieCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
@@ -396,6 +414,8 @@ var MainScene = new Phaser.Class({
         hairtieDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(hairtieCP) );
 
         // TWIST TIE
+        const twisttieCP = new CatProgressive(0, 100, 1, 0.33, true);
+        const twisttieDisplay = this.add.text(1100, 400, 'Twist Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         twisttieCP = new CatProgressive(0, 100, 1, 0.33, true);
         twisttieCounter = this.add.text(1245, 285, twisttieCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
         twisttieCost = this.add.text(925, 270, twisttieCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
@@ -407,6 +427,8 @@ var MainScene = new Phaser.Class({
         twisttieDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(twisttieCP) );
 
         // LASER POINTER
+        const laserpointerCP = new CatProgressive(0, 400, 0.5, 0, true);
+        const laserpointerDisplay = this.add.text(1100, 450, 'Laser Pointer', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         laserpointerCP = new CatProgressive(0, 400, 0.5, 0, true);
         laserpointerCounter = this.add.text(1245, 360, laserpointerCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
         laserpointerCost = this.add.text(925, 345, laserpointerCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
@@ -425,6 +447,10 @@ var MainScene = new Phaser.Class({
         cushion_cheese.scale = 0.25; 
         const cushionDisplay = this.add.image(1110, 435, 'cushion').setOrigin(0.5);
         cushionDisplay.scale = 1.4;
+=======
+        const cushionCP = new CatProgressive(0, 1, 750, 0.83, true);
+        const cushionDisplay = this.add.text(1100, 500, 'Cushion', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+>>>>>>> Stashed changes
         cushionDisplay.setInteractive();
         cushionDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(cushionCP) );
 
