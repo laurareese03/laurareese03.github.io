@@ -8,12 +8,17 @@ var MainScene = new Phaser.Class({
     preload: function() {
     },
     
+
     create: function() {
+        // set up all objects for buying
         this.createAutoClickers();
-        console.log("create");
         this.createBuildings();
         this.createCatInstants();
         this.createCatProgressives();
+
+        //setInterval(this.updateStatsBySecond, 1000);
+
+        // test text display
         var text = this.add.text(
             640, 
             360, 
@@ -27,6 +32,44 @@ var MainScene = new Phaser.Class({
     
     },
     update: function() {},
+
+    // onclick of cheese
+    onClickCheese: function() {
+        // increase cheese amount
+
+        // update display value
+
+    },
+
+    // onclick of buying an autoclicker
+    onClickBuyAutoClicker: function(clicker) {
+        // check if it's unlocked
+
+            // get cost of clicker
+
+            // if enough cheese owned
+
+                // subtract amount of cheese cost from owned
+
+                // increase cheese per second amount
+
+    },
+
+    onClickUpgradeBuilding: function() {
+
+    },
+
+    onClickBuyCatInstant(item) {
+
+    },
+
+    onClickBuyCatProgressive(item) {
+
+    },
+
+    updateStatsBySecond: function() {
+        //console.log("hi")
+    },
 
     createAutoClickers: function() {
         const forkAC = new AutoClick(1, 1, 1, 1, true);
