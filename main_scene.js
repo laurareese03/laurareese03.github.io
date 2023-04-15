@@ -1,8 +1,8 @@
 // don't let cheese Counter go below 0!!!!!
 
 var cheeseCounter, catCounter, autoclick_tiers, autoclickers, next_autoclick_tier_index;
-var forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC;
-var ballCP;
+var forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC
+var upgradebuildingBtn;
 var MainScene = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize: function() {
@@ -31,7 +31,7 @@ var MainScene = new Phaser.Class({
         this.load.image('cathouse', 'assets/cathouse.png');
         this.load.image('shed', 'assets/Shed.png');
         this.load.image('house', 'assets/House.png');
-        this.load.image('shed', 'assets/barn.png');
+        this.load.image('barn', 'assets/barn.png');
         this.load.image('apartment', 'assets/Apartment.png');
         this.load.image('catopia', 'assets/catopia.png');
         // cat items
@@ -70,11 +70,6 @@ var MainScene = new Phaser.Class({
       moon_img.setInteractive();
       moon_img.on('pointerdown', () => this.onClickCheese() );
 
-      // building visual
-      const upgradebuildingBtn = this.add.text(640, 650, 'upgrade building', { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
-      upgradebuildingBtn.setInteractive();
-      upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
-
       autoclick_tiers = [1,3,7,15,30,50,75,100,150]
       
       // set up all objects for buying
@@ -83,10 +78,15 @@ var MainScene = new Phaser.Class({
       this.createCatInstants();
       this.createCatProgressives();
 
+      // building visual
+      upgradebuildingBtn = this.add.image(640, 650, buildings[curr_building].image, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      upgradebuildingBtn.setInteractive();
+      upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
+
       cheeseCounter = this.add.text(640, 515, "Cheese: " + cheese_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
       catCounter = this.add.text(640, 35, "Cats: " + cat_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
 
-      cheesepersecCounter = this.add.text(640, 575, cheese_per_sec, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      cheesepersecCounter = this.add.text(640, 575, "Cheese/sec: " + cheese_per_sec, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
       autoclickers = [forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC]
       next_autoclick_tier_index = 1;
 
@@ -96,7 +96,7 @@ var MainScene = new Phaser.Class({
     update: function() {
       cheeseCounter.setText("Cheese: " + cheese_amount);
       catCounter.setText("Cats: " + Math.floor(cat_amount));
-      cheesepersecCounter.setText(cheese_per_sec);
+      cheesepersecCounter.setText("Cheese/sec: " + cheese_per_sec);
       // autoclicker counters
       forkCounter.setText(forkAC.owned);
       spoonCounter.setText(spoonAC.owned);
@@ -107,6 +107,7 @@ var MainScene = new Phaser.Class({
       drillCounter.setText(drillAC.owned);
       excavatorCounter.setText(excavatorAC.owned);
       cheesemineCounter.setText(cheesemineAC.owned);
+
       // cat progressive counters
       ballCounter.setText(ballCP.owned);
       mouseCounter.setText(mouseCP.owned);
@@ -117,7 +118,8 @@ var MainScene = new Phaser.Class({
       keyboardCounter.setText(keyboardCP.owned);
       scratcherCounter.setText(scratcherCP.owned);
       treeCounter.setText(treeCP.owned);
-
+      
+      upgradebuildingBtn.setTexture(buildings[curr_building].image);
     },
 
     // onclick of cheese
@@ -311,16 +313,15 @@ var MainScene = new Phaser.Class({
     },
 
     createBuildings: function() {
-
         curr_building = 0;
         
-        const cardboardboxB = new Building(1, 1);
-        const catCaveB = new Building(1, 10);
-        const shedB = new Building(1, 100);
-        const houseB = new Building(1, 500);
-        const barnB = new Building(1, 1000);
-        const apartmentB = new Building(1, 5000);
-        const catopiaB = new Building(1, 15000);
+        const cardboardboxB = new Building(1, 1, 'cardboardbox');
+        const catCaveB = new Building(1, 10, 'cathouse');
+        const shedB = new Building(1, 100, 'shed');
+        const houseB = new Building(1, 500, 'house');
+        const barnB = new Building(1, 1000, 'barn');
+        const apartmentB = new Building(1, 5000, 'apartment');
+        const catopiaB = new Building(1, 15000, 'catopia');
 
         buildings = [];
         buildings.push(cardboardboxB, catCaveB, shedB, houseB, barnB, apartmentB, catopiaB);
