@@ -18,6 +18,8 @@ var MainScene = new Phaser.Class({
         this.load.image('cat', 'assets/cat.png');
         this.load.image('fork', 'assets/fork.png');
         this.load.image('spoon', 'assets/spoon.png');
+        this.load.image('shovel', 'assets/shovel.png');
+        this.load.image('pickaxe', 'assets/pickaxe.png');
     },
 
     create: function() {
@@ -160,41 +162,47 @@ var MainScene = new Phaser.Class({
         cheesemineAC = new AutoClick(5000, autoclick_tiers[8], 1, 0, false);
 
         // Autoclickers
-        const forkDisplay = this.add.image(50, 125, 'fork');
+        const forkDisplay = this.add.image(150, 100, 'fork').setOrigin(0.5);
+        forkDisplay.scale = 1.4;
         forkDisplay.setInteractive();
         forkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(forkAC) );
 
-        const spoonDisplay = this.add.image(50, 175, 'spoon');
+        const spoonDisplay = this.add.image(150, 175, 'spoon').setOrigin(0.5);
+        spoonDisplay.scale = 1.4;
         spoonDisplay.setInteractive();
         spoonDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(spoonAC) );
 
-        const sporkDisplay = this.add.text(50, 225, 'Spork', { fill: '#fff', fontSize: 40 });
+        const sporkDisplay = this.add.image(150, 250, 'spoon').setOrigin(0.5);
+        sporkDisplay.scale = 1.4;
         sporkDisplay.setInteractive();
-        sporkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(sporkAC) );
+        sporkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(sporkAC) ).setOrigin(0.5);
 
-        const shovelDisplay = this.add.text(50, 275, 'Shovel', { fill: '#fff', fontSize: 40 });
+        const shovelDisplay = this.add.image(150, 325, 'shovel').setOrigin(0.5);
+        shovelDisplay.scale = 1.4;
         shovelDisplay.setInteractive();
         shovelDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(shovelAC) );
+        spoonDisplay.scale = 1.4;
 
-        const pickaxeDisplay = this.add.text(50, 325, 'Pickaxe', { fill: '#fff', fontSize: 40 });
+        const pickaxeDisplay = this.add.image(150, 400, 'pickaxe').setOrigin(0.5);
+        pickaxeDisplay.scale = 1.4;
         pickaxeDisplay.setInteractive();
         pickaxeDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(pickaxeAC) );
 
-        const jackhammerDisplay = this.add.text(50, 375, 'Jackhammer', { fill: '#fff', fontSize: 40 });
+        const jackhammerDisplay = this.add.text(150, 450, 'Jackhammer', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         jackhammerDisplay.setInteractive();
-        jackhammerDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(jackhammerAC) );
+        jackhammerDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(jackhammerAC) ).setOrigin(0.5);
 
-        const drillDisplay = this.add.text(50, 425, 'Drill', { fill: '#fff', fontSize: 40 });
+        const drillDisplay = this.add.text(150, 500, 'Drill', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         drillDisplay.setInteractive();
-        drillDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(drillAC) );
+        drillDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(drillAC) ).setOrigin(0.5);
 
-        const excavatorDisplay = this.add.text(50, 475, 'Excavator', { fill: '#fff', fontSize: 40 });
+        const excavatorDisplay = this.add.text(150, 475, 'Excavator', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         excavatorDisplay.setInteractive();
-        excavatorDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(excavatorAC) );
+        excavatorDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(excavatorAC) ).setOrigin(0.5);
 
-        const cheesemineDisplay = this.add.text(50, 525, 'Cheese Mine', { fill: '#fff', fontSize: 40 });
+        const cheesemineDisplay = this.add.text(150, 525, 'Cheese Mine', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         cheesemineDisplay.setInteractive();
-        cheesemineDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(cheesemineAC) );
+        cheesemineDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(cheesemineAC) ).setOrigin(0.5);
     },
 
     createBuildings: function() {
