@@ -1,4 +1,4 @@
-class CatInstant {
+class CatProgressive {
 
     constructor(cost, cats_per_sec, curr_output, is_unlocked) {
       this.cost = cost;
@@ -6,7 +6,7 @@ class CatInstant {
       this.curr_output = curr_output;
       this.is_unlocked = is_unlocked;
     }
-  
+    /*
     // Getter - cost
     get cost() {
       return this.cost();
@@ -23,8 +23,8 @@ class CatInstant {
     } 
 
     // Setter - current output
-    set curr_output(value) {
-        this.push(value);
+    set curr_output(curr_output) {
+        this.curr_output = curr_output;
     }
 
     // Getter - is unlocked
@@ -33,8 +33,8 @@ class CatInstant {
     } 
 
     // Setter - is unlocked
-    set is_unlocked(value) {
-        this.push(value);
-    }
+    set is_unlocked(is_unlocked) {
+        this.is_unlocked = is_unlocked;
+    }*/
   
   }
