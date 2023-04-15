@@ -1,7 +1,7 @@
-var SceneTwo = new Phaser.Class({
+var MainScene = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize: function() {
-        Phaser.Scene.call(this, { "key": "SceneTwo" });
+        Phaser.Scene.call(this, { "key": "MainScene" });
     },
     init: function() {
     },
@@ -10,7 +10,7 @@ var SceneTwo = new Phaser.Class({
         var text = this.add.text(
             640, 
             360, 
-            "two", 
+            "Main Scene", 
             {
                 fontSize: 50,
                 color: "#000000",
@@ -21,3 +21,4 @@ var SceneTwo = new Phaser.Class({
     },
     update: function() {}
 });
+

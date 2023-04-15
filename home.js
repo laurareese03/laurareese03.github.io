@@ -21,7 +21,7 @@ var Home = new Phaser.Class({
             delay: 3000,
             loop: false,
             callback: () => {
-                this.scene.start("SceneOne", { 
+                this.scene.start("MainScene", { 
                     "message": "Game Over" 
                 });
                 
