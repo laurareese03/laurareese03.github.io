@@ -30,6 +30,7 @@ var MainScene = new Phaser.Class({
         this.load.image('cheesemine', 'assets/cheesemine.png');
         // locked autoclickers
         this.load.image('lockedspoon', 'assets/spoon_locked.png');
+        this.load.image('lockedspork', 'assets/spork_locked.png');
         this.load.image('lockedshovel', 'assets/shovel_locked.png');
         this.load.image('lockedpick', 'assets/pickaxe_pickaxe.png');
         this.load.image('lockedjack', 'assets/jackhammer_locked.png');
@@ -134,7 +135,7 @@ var MainScene = new Phaser.Class({
       scratcherCounter.setText(scratcherCP.owned);
       treeCounter.setText(treeCP.owned);
       upgradebuildingBtn.setTexture(buildings[curr_building].image);
-      upgradebuildingPrice.setText(buildings[curr_building].cost);
+      upgradebuildingPrice.setText(buildings[curr_building + 1].cost);
     },
 
     // onclick of cheese
@@ -340,7 +341,7 @@ var MainScene = new Phaser.Class({
         const catopiaB = new Building(1000, 15000, 'catopia');
 
         buildings = [];
-        buildings.push(cardboardboxB, catCaveB, shedB, houseB, barnB, apartmentB, catopiaB);
+        buildings.push(cardboardboxB, catCaveB, shedB, houseB, barnB, apartmentB, catopiaB, "");
     },
 
     createCatInstants: function() {
