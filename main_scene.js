@@ -37,7 +37,7 @@ var MainScene = new Phaser.Class({
         // cat items
         this.load.image('ball', 'assets/ball.png');
         this.load.image('mouse', 'assets/mouse.png');
-        this.load.image('hairtie', 'assets/mouse.png');
+        this.load.image('hairtie', 'assets/hairtie.png');
         this.load.image('twisttie', 'assets/twist_tie.png');
         this.load.image('laserpointer', 'assets/laser_pointer.png');
         this.load.image('cushion', 'assets/cushion.png');
@@ -347,7 +347,7 @@ var MainScene = new Phaser.Class({
         ballCost = this.add.text(957, 45, ballCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
         const ball_cheese = this.add.image(985, 60, 'moon').setOrigin(0.5);
         ball_cheese.scale = 0.25; 
-        const ballDisplay = this.add.image(1100, 60, 'ball').setOrigin(0.5);
+        const ballDisplay = this.add.image(1110, 60, 'ball').setOrigin(0.5);
         ballDisplay.scale = 1.4;
         ballDisplay.setInteractive();
         ballDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(ballCP) );
@@ -365,43 +365,78 @@ var MainScene = new Phaser.Class({
 
         // HAIR TIE
         const hairtieCP = new CatProgressive(0, 50, 0.17, 0, true);
-        const hairtieDisplay = this.add.text(1100, 350, 'Hair Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        hairtieCounter = this.add.text(1245, 210, hairtieCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
+        hairtieCost = this.add.text(940, 120, hairtieCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
+        const hairtie_cheese = this.add.image(985, 210, 'moon').setOrigin(0.5);
+        hairtie_cheese.scale = 0.25; 
+        const hairtieDisplay = this.add.image(1110, 210, 'hairtie').setOrigin(0.5);
+        hairtieDisplay.scale = 1.4;
         hairtieDisplay.setInteractive();
         hairtieDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(hairtieCP) );
 
         // TWIST TIE
         const twisttieCP = new CatProgressive(0, 100, 1, 0.33, true);
-        const twisttieDisplay = this.add.text(1100, 400, 'Twist Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        twisttieCounter = this.add.text(1245, 285, twisttieCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
+        twisttieCost = this.add.text(940, 120, twisttieCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
+        const twisttie_cheese = this.add.image(985, 285, 'moon').setOrigin(0.5);
+        twisttie_cheese.scale = 0.25; 
+        const twisttieDisplay = this.add.image(1110, 285, 'twisttie').setOrigin(0.5);
+        twisttieDisplay.scale = 1.4;
         twisttieDisplay.setInteractive();
         twisttieDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(twisttieCP) );
 
         // LASER POINTER
         const laserpointerCP = new CatProgressive(0, 400, 0.5, 0, true);
-        const laserpointerDisplay = this.add.text(1100, 450, 'Laser Pointer', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        laserpointerCounter = this.add.text(1245, 360, laserpointerCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
+        laserpointerCost = this.add.text(940, 120, laserpointerCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
+        const laserpointer_cheese = this.add.image(985, 360, 'moon').setOrigin(0.5);
+        laserpointer_cheese.scale = 0.25; 
+        const laserpointerDisplay = this.add.image(1110, 360, 'laserpointer').setOrigin(0.5);
+        laserpointerDisplay.scale = 1.4;
         laserpointerDisplay.setInteractive();
         laserpointerDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(laserpointerCP) );
 
         // CUSHION
         const cushionCP = new CatProgressive(0, 1, 750, 0.83, true);
-        const cushionDisplay = this.add.text(1100, 500, 'Cushion', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        cushionCounter = this.add.text(1245, 435, cushionCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
+        cushionCost = this.add.text(940, 120, cushionCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
+        const cushion_cheese = this.add.image(985, 435, 'moon').setOrigin(0.5);
+        cushion_cheese.scale = 0.25; 
+        const cushionDisplay = this.add.image(1110, 435, 'cushion').setOrigin(0.5);
+        cushionDisplay.scale = 1.4;
         cushionDisplay.setInteractive();
         cushionDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(cushionCP) );
 
         // KEYBOARD
         const keyboardCP = new CatProgressive(0, 1, 1250, 1.67, true);
-        const keyboardDisplay = this.add.text(1100, 550, 'Keyboard', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        keyboardCounter = this.add.text(1245, 510, keyboardCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
+        keyboardCost = this.add.text(940, 120, keyboardCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
+        const keyboard_cheese = this.add.image(985, 510, 'moon').setOrigin(0.5);
+        keyboard_cheese.scale = 0.25; 
+        const keyboardDisplay = this.add.image(1110, 510, 'keyboard').setOrigin(0.5);
+        keyboardDisplay.scale = 1.4;
         keyboardDisplay.setInteractive();
         keyboardDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(keyboardCP) );
 
         // SCRATCHER
         const scratcherCP = new CatProgressive(0, 1, 2000, 2.5, true);
-        const scratcherDisplay = this.add.text(1100, 600, 'Scratcher', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        scratcherCounter = this.add.text(1245, 585, scratcherCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
+        scratcherCost = this.add.text(940, 120, scratcherCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
+        const scratcher_cheese = this.add.image(985, 585, 'moon').setOrigin(0.5);
+        scratcher_cheese.scale = 0.25; 
+        const scratcherDisplay = this.add.image(1110, 585, 'scratcher').setOrigin(0.5);
+        scratcherDisplay.scale = 1.4;
         scratcherDisplay.setInteractive();
         scratcherDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(scratcherCP) );
 
         // TREE
         const treeCP = new CatProgressive(0, 1, 5000, 3.33, true);
-        const treeDisplay = this.add.text(1100, 650, 'Tree', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        treeCounter = this.add.text(1245, 660, treeCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
+        treeCost = this.add.text(940, 120, treeCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
+        const tree_cheese = this.add.image(985, 660, 'moon').setOrigin(0.5);
+        tree_cheese.scale = 0.25; 
+        const treeDisplay = this.add.image(1110, 660, 'tree').setOrigin(0.5);
+        treeDisplay.scale = 1.4;
         treeDisplay.setInteractive();
         treeDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(treeCP) );
 
