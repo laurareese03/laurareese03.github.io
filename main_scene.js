@@ -46,7 +46,7 @@ var MainScene = new Phaser.Class({
         // cat items - progressive
         this.load.image('ball', 'assets/ball.png');
         this.load.image('mouse', 'assets/mouse.png');
-        this.load.image('hairtie', 'assets/mouse.png');
+        this.load.image('hairtie', 'assets/hairtie.png');
         this.load.image('twisttie', 'assets/twist_tie.png');
         this.load.image('laserpointer', 'assets/laser_pointer.png');
         this.load.image('cushion', 'assets/cushion.png');
@@ -260,7 +260,7 @@ var MainScene = new Phaser.Class({
         sporkCost = this.add.text(290, 195, sporkAC.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" })
         const spork_cheese = this.add.image(320, 210, 'moon').setOrigin(0.5);
         spork_cheese.scale = 0.25; 
-        sporkDisplay = this.add.image(175, 210, 'lockedspoon').setOrigin(0.5);
+        sporkDisplay = this.add.image(175, 210, 'lockedspork').setOrigin(0.5);
         sporkDisplay.scale = 1.4;
         sporkDisplay.setInteractive();
         sporkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(sporkAC) ).setOrigin(0.5);
