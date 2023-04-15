@@ -107,7 +107,7 @@ var MainScene = new Phaser.Class({
       cheesepersecCounter.setText("Cheese/sec: " + cheese_per_sec);
       // autoclicker counters
       forkCounter.setText(forkAC.owned);
-        spoonCounter.setText(spoonAC.owned);
+      spoonCounter.setText(spoonAC.owned);
       sporkCounter.setText(sporkAC.owned);
       shovelCounter.setText(shovelAC.owned);
       pickaxeCounter.setText(pickaxeAC.owned);
@@ -388,7 +388,8 @@ var MainScene = new Phaser.Class({
         mouseDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(mouseCP) );
 
         // HAIR TIE
-<<<<<<< Updated upstream
+        const hairtieCP = new CatProgressive(0, 50, 0.17, 0, true);
+        const hairtieDisplay = this.add.text(1100, 350, 'Hair Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         hairtieCP = new CatProgressive(0, 50, 0.17, 0, true);
         hairtieCounter = this.add.text(1245, 210, hairtieCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
         hairtieCost = this.add.text(940, 195, hairtieCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
@@ -396,15 +397,12 @@ var MainScene = new Phaser.Class({
         hairtie_cheese.scale = 0.25; 
         const hairtieDisplay = this.add.image(1110, 210, 'hairtie').setOrigin(0.5);
         hairtieDisplay.scale = 1.4;
-=======
-        const hairtieCP = new CatProgressive(0, 50, 0.17, 0, true);
-        const hairtieDisplay = this.add.text(1100, 350, 'Hair Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
->>>>>>> Stashed changes
         hairtieDisplay.setInteractive();
         hairtieDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(hairtieCP) );
 
         // TWIST TIE
-<<<<<<< Updated upstream
+        const twisttieCP = new CatProgressive(0, 100, 1, 0.33, true);
+        const twisttieDisplay = this.add.text(1100, 400, 'Twist Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         twisttieCP = new CatProgressive(0, 100, 1, 0.33, true);
         twisttieCounter = this.add.text(1245, 285, twisttieCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
         twisttieCost = this.add.text(925, 270, twisttieCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
@@ -412,15 +410,12 @@ var MainScene = new Phaser.Class({
         twisttie_cheese.scale = 0.25; 
         const twisttieDisplay = this.add.image(1110, 285, 'twisttie').setOrigin(0.5);
         twisttieDisplay.scale = 1.4;
-=======
-        const twisttieCP = new CatProgressive(0, 100, 1, 0.33, true);
-        const twisttieDisplay = this.add.text(1100, 400, 'Twist Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
->>>>>>> Stashed changes
         twisttieDisplay.setInteractive();
         twisttieDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(twisttieCP) );
 
         // LASER POINTER
-<<<<<<< Updated upstream
+        const laserpointerCP = new CatProgressive(0, 400, 0.5, 0, true);
+        const laserpointerDisplay = this.add.text(1100, 450, 'Laser Pointer', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         laserpointerCP = new CatProgressive(0, 400, 0.5, 0, true);
         laserpointerCounter = this.add.text(1245, 360, laserpointerCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
         laserpointerCost = this.add.text(925, 345, laserpointerCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
@@ -432,7 +427,6 @@ var MainScene = new Phaser.Class({
         laserpointerDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(laserpointerCP) );
 
         // CUSHION
-<<<<<<< Updated upstream
         cushionCP = new CatProgressive(0, 750, 0.83, 0, true);
         cushionCounter = this.add.text(1245, 435, cushionCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
         cushionCost = this.add.text(925, 420, cushionCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
@@ -448,7 +442,6 @@ var MainScene = new Phaser.Class({
         cushionDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(cushionCP) );
 
         // KEYBOARD
-<<<<<<< Updated upstream
         keyboardCP = new CatProgressive(0, 1250, 1.67, 0, true);
         keyboardCounter = this.add.text(1245, 510, keyboardCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
         keyboardCost = this.add.text(910, 495, keyboardCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
@@ -460,7 +453,6 @@ var MainScene = new Phaser.Class({
         keyboardDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(keyboardCP) );
 
         // SCRATCHER
-<<<<<<< Updated upstream
         scratcherCP = new CatProgressive(0, 2000, 2.5, 0, true);
         scratcherCounter = this.add.text(1245, 585, scratcherCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
         scratcherCost = this.add.text(910, 570, scratcherCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
@@ -468,15 +460,10 @@ var MainScene = new Phaser.Class({
         scratcher_cheese.scale = 0.25; 
         const scratcherDisplay = this.add.image(1110, 585, 'scratcher').setOrigin(0.5);
         scratcherDisplay.scale = 1.4;
-=======
-        const scratcherCP = new CatProgressive(0, 1, 2000, 2.5, true);
-        const scratcherDisplay = this.add.text(1100, 600, 'Scratcher', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
->>>>>>> Stashed changes
         scratcherDisplay.setInteractive();
         scratcherDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(scratcherCP) );
 
         // TREE
-<<<<<<< Updated upstream
         treeCP = new CatProgressive(0, 5000, 3.33, 0, true);
         treeCounter = this.add.text(1245, 660, treeCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
         treeCost = this.add.text(910, 645, treeCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
@@ -484,10 +471,6 @@ var MainScene = new Phaser.Class({
         tree_cheese.scale = 0.25; 
         const treeDisplay = this.add.image(1110, 660, 'tree').setOrigin(0.5);
         treeDisplay.scale = 1.4;
-=======
-        const treeCP = new CatProgressive(0, 1, 5000, 3.33, true);
-        const treeDisplay = this.add.text(1100, 650, 'Tree', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
->>>>>>> Stashed changes
         treeDisplay.setInteractive();
         treeDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(treeCP) );
 
