@@ -224,7 +224,7 @@ var MainScene = new Phaser.Class({
         console.log(cat_amount, autoclick_tiers[next_autoclick_tier_index])
         if (cat_amount >= autoclick_tiers[next_autoclick_tier_index]) {
           console.log(autoclickers[next_autoclick_tier_index], 'blah')
-          autoclickers[next_autoclick_tier_index].setUnlock()
+          autoclickers[next_autoclick_tier_index].is_unlocked(true);
           next_autoclick_tier_index += 1;
         }
         
@@ -401,8 +401,6 @@ var MainScene = new Phaser.Class({
         mouseDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(mouseCP) );
 
         // HAIR TIE
-        const hairtieCP = new CatProgressive(0, 50, 0.17, 0, true);
-        const hairtieDisplay = this.add.text(1100, 350, 'Hair Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         hairtieCP = new CatProgressive(0, 50, 0.17, 0, true);
         hairtieCounter = this.add.text(1245, 210, hairtieCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
         hairtieCost = this.add.text(940, 195, hairtieCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
@@ -414,8 +412,6 @@ var MainScene = new Phaser.Class({
         hairtieDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(hairtieCP) );
 
         // TWIST TIE
-        const twisttieCP = new CatProgressive(0, 100, 1, 0.33, true);
-        const twisttieDisplay = this.add.text(1100, 400, 'Twist Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         twisttieCP = new CatProgressive(0, 100, 1, 0.33, true);
         twisttieCounter = this.add.text(1245, 285, twisttieCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
         twisttieCost = this.add.text(925, 270, twisttieCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
@@ -427,8 +423,6 @@ var MainScene = new Phaser.Class({
         twisttieDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(twisttieCP) );
 
         // LASER POINTER
-        const laserpointerCP = new CatProgressive(0, 400, 0.5, 0, true);
-        const laserpointerDisplay = this.add.text(1100, 450, 'Laser Pointer', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         laserpointerCP = new CatProgressive(0, 400, 0.5, 0, true);
         laserpointerCounter = this.add.text(1245, 360, laserpointerCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
         laserpointerCost = this.add.text(925, 345, laserpointerCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
@@ -447,10 +441,6 @@ var MainScene = new Phaser.Class({
         cushion_cheese.scale = 0.25; 
         const cushionDisplay = this.add.image(1110, 435, 'cushion').setOrigin(0.5);
         cushionDisplay.scale = 1.4;
-=======
-        const cushionCP = new CatProgressive(0, 1, 750, 0.83, true);
-        const cushionDisplay = this.add.text(1100, 500, 'Cushion', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
->>>>>>> Stashed changes
         cushionDisplay.setInteractive();
         cushionDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(cushionCP) );
 
