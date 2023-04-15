@@ -9,6 +9,8 @@ var MainScene = new Phaser.Class({
         // import background photo
         this.load.setBaseURL('https://laurareese03.github.io/');
         this.load.image('space_back', 'assets/space_back2.jpg');
+        this.load.image('moon', 'assets/moon.jpg');
+        this.load.image('button', 'assets/Button.png');
     },
 
     create: function() {
@@ -25,9 +27,19 @@ var MainScene = new Phaser.Class({
         cats_per_sec = 0;
 
         // Cheese Visual
+        const moon_img = this.add.image(640, 200, 'moon').setOrigin(0.5);
         const cheeseBtn = this.add.text(640, 200, 'cheese', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
+
         cheeseBtn.setInteractive();
         cheeseBtn.on('pointerdown', () => this.onClickCheese() );
+
+        // building visual
+        const upgradebuildingBtn = this.add.text(640, 300, 'upgrade building', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
+        upgradebuildingBtn.setInteractive();
+        upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
+
+        cheeseCounter = this.add.text(640, 250, cheese_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
+        catCounter = this.add.text(640, 450, cat_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
 
         // Stats box
         const statsBox = this.add.text(640, 500, 'stat', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
@@ -41,14 +53,15 @@ var MainScene = new Phaser.Class({
         setInterval(this.updateStatsBySecond, 1000);
     
     },
-    update: function() {},
+    update: function() {
+        cheeseCounter.setText(cheese_amount);
+        catCounter.setText(cat_amount);
+    },
 
     // onclick of cheese
     onClickCheese: function() {
         // increase cheese amount
         cheese_amount += 1;
-        // update display value
-        console.log(cheese_amount);
     },
 
     // onclick of buying an autoclicker
@@ -70,7 +83,15 @@ var MainScene = new Phaser.Class({
     },
 
     onClickUpgradeBuilding: function() {
-
+        // get the next building object
+        next_building = buildings[curr_building + 1];
+        // check enough cheese to buy
+        if (cheese_amount >= next_building.cost) {
+            // move current building location
+            curr_building += 1;
+            // update cat max
+            max_cats = curr_building.cat_limit;
+        }
     },
 
     onClickBuyCatInstant(item) {
@@ -107,11 +128,11 @@ var MainScene = new Phaser.Class({
         // add cheese per second to cheese amount
         cheese_amount += cheese_per_sec;
         // update cheese display value
-        console.log(cheese_amount);
+        
         // add cats per second to cats amount    
         cat_amount += cats_per_sec
         // update cat display value
-        console.log(cat_amount);
+        
     },
 
     createAutoClickers: function() {
@@ -126,6 +147,7 @@ var MainScene = new Phaser.Class({
         cheesemineAC = new AutoClick(1, 1, 1, 1, true);
 
         // Autoclickers
+        const button_fork = this.add.image(50, 125, 'button');
         const forkDisplay = this.add.text(50, 125, 'Fork', { fill: '#fff', fontSize: 40 });
         forkDisplay.setInteractive();
         forkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(forkAC) );
@@ -164,6 +186,9 @@ var MainScene = new Phaser.Class({
     },
 
     createBuildings: function() {
+
+        curr_building = 0;
+        
         const cardboardboxB = new Building(1, 1);
         const catCaveB = new Building(1, 3);
         const shedB = new Building(1, 50);
@@ -172,6 +197,9 @@ var MainScene = new Phaser.Class({
         const studioApartmentComplexB = new Building(1, 1000);
         const multibedApartmentComplexB = new Building(1, 2000);
         const catopiaB = new Building(1, 10000);
+
+        buildings = [];
+        buildings.push(cardboardboxB, catCaveB, shedB, houseB, barnB, studioApartmentComplexB, multibedApartmentComplexB, catopiaB);
     },
 
     createCatInstants: function() {
@@ -198,47 +226,47 @@ var MainScene = new Phaser.Class({
     }, 
 
     createCatProgressives: function() {
-        const ballCP = new CatProgressive(1, 1, 0, true);
+        const ballCP = new CatProgressive(1, 0.033, 0, true);
         const ballDisplay = this.add.text(1100, 250, 'Ball', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         ballDisplay.setInteractive();
         ballDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(ballCP) );
 
-        const mouseCP = new CatProgressive(1, 1, 0, true);
+        const mouseCP = new CatProgressive(1, 0.083, 0, true);
         const mouseDisplay = this.add.text(1100, 300, 'Mouse', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         mouseDisplay.setInteractive();
         mouseDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(mouseCP) );
 
-        const ponytailholderCP = new CatProgressive(1, 1, 0, true);
+        const ponytailholderCP = new CatProgressive(1, 0.17, 0, true);
         const ponytailholderDisplay = this.add.text(1100, 350, 'Ponytail Holder', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         ponytailholderDisplay.setInteractive();
         ponytailholderDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(ponytailholderCP) );
 
-        const twisttieCP = new CatProgressive(1, 1, 0, true);
+        const twisttieCP = new CatProgressive(1, 1, 0.33, true);
         const twisttieDisplay = this.add.text(1100, 400, 'Twist Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         twisttieDisplay.setInteractive();
         twisttieDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(twisttieCP) );
 
-        const laserpointerCP = new CatProgressive(1, 1, 0, true);
+        const laserpointerCP = new CatProgressive(1, 0.5, 0, true);
         const laserpointerDisplay = this.add.text(1100, 450, 'Laser Pointer', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         laserpointerDisplay.setInteractive();
         laserpointerDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(laserpointerCP) );
 
-        const cushionCP = new CatProgressive(1, 1, 0, true);
+        const cushionCP = new CatProgressive(1, 1, 0.83, true);
         const cushionDisplay = this.add.text(1100, 500, 'Cushion', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         cushionDisplay.setInteractive();
         cushionDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(cushionCP) );
 
-        const keyboardCP = new CatProgressive(1, 1, 0, true);
+        const keyboardCP = new CatProgressive(1, 1, 1.67, true);
         const keyboardDisplay = this.add.text(1100, 550, 'Keyboard', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         keyboardDisplay.setInteractive();
         keyboardDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(keyboardCP) );
 
-        const scratcherCP = new CatProgressive(1, 1, 0, true);
+        const scratcherCP = new CatProgressive(1, 1, 2.5, true);
         const scratcherDisplay = this.add.text(1100, 600, 'Scratcher', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         scratcherDisplay.setInteractive();
         scratcherDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(scratcherCP) );
 
-        const treeCP = new CatProgressive(1, 1, 0, true);
+        const treeCP = new CatProgressive(1, 1, 3.33, true);
         const treeDisplay = this.add.text(1100, 650, 'Tree', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         treeDisplay.setInteractive();
         treeDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(treeCP) );
