@@ -2,10 +2,7 @@
 
 var cheeseCounter, catCounter, autoclick_tiers, autoclickers, next_autoclick_tier_index;
 var forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC
-<<<<<<< Updated upstream
-=======
 var upgradebuildingBtn, upgradebuildingPrice;
->>>>>>> Stashed changes
 var MainScene = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize: function() {
@@ -91,12 +88,6 @@ var MainScene = new Phaser.Class({
       upgradebuildingBtn.setInteractive();
       upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
 
-<<<<<<< Updated upstream
-      cheeseCounter = this.add.text(640, 515, "Cheese: " + cheese_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
-      catCounter = this.add.text(640, 35, "Cats: " + cat_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
-
-      cheesepersecCounter = this.add.text(640, 575, cheese_per_sec, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
-=======
       // building visual
       upgradebuildingBtn = this.add.image(640, 650, buildings[curr_building].image, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
       upgradebuildingBtn.setInteractive();
@@ -105,7 +96,6 @@ var MainScene = new Phaser.Class({
 
       cheeseCounter = this.add.text(640, 515, "Cheese: " + cheese_amount + " (" + cheese_per_sec + "/sec)", { fill: '#fff', fontSize: 40, fontFamily: "American Typewriter" }).setOrigin(0.5);
       catCounter = this.add.text(640, 35, "Cats: " + Math.floor(cat_amount) + " (" + Math.round(cats_per_sec*60) + "/min)", { fill: '#fff', fontSize: 40, fontFamily: "American Typewriter" }).setOrigin(0.5);
->>>>>>> Stashed changes
       autoclickers = [forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC]
       next_autoclick_tier_index = 1;
 
@@ -113,14 +103,8 @@ var MainScene = new Phaser.Class({
     
     },
     update: function() {
-<<<<<<< Updated upstream
-      cheeseCounter.setText("Cheese: " + cheese_amount);
-      catCounter.setText("Cats: " + Math.floor(cat_amount));
-      cheesepersecCounter.setText(cheese_per_sec);
-=======
       cheeseCounter.setText("Cheese: " + cheese_amount + " (" + cheese_per_sec + "/sec)");
       catCounter.setText("Cats: " + Math.floor(cat_amount) + " (" + Math.round(cats_per_sec*60) + "/min)");
->>>>>>> Stashed changes
       // autoclicker counters
       forkCounter.setText(forkAC.owned);
       spoonCounter.setText(spoonAC.owned);
@@ -144,10 +128,7 @@ var MainScene = new Phaser.Class({
       treeCounter.setText(treeCP.owned);
       
       upgradebuildingBtn.setTexture(buildings[curr_building].image);
-<<<<<<< Updated upstream
-=======
       upgradebuildingPrice.setText(buildings[curr_building].cost);
->>>>>>> Stashed changes
     },
 
     // onclick of cheese
