@@ -165,48 +165,85 @@ var MainScene = new Phaser.Class({
 
     createBuildings: function() {
         const cardboardboxB = new Building(1, 1);
-        const catCaveB = new Building(1, 1);
-        const shedB = new Building(1, 1);
-        const houseB = new Building(1, 1);
-        const barnB = new Building(1, 1);
-        const studioApartmentComplexB = new Building(1, 1);
-        const multibedApartmentComplexB = new Building(1, 1);
-        const catopiaB = new Building(1, 1);
+        const catCaveB = new Building(1, 3);
+        const shedB = new Building(1, 50);
+        const houseB = new Building(1, 250);
+        const barnB = new Building(1, 500);
+        const studioApartmentComplexB = new Building(1, 1000);
+        const multibedApartmentComplexB = new Building(1, 2000);
+        const catopiaB = new Building(1, 10000);
     },
 
     createCatInstants: function() {
         let treatCI = new CatInstant(1, 1);   
-        const treatDisplay = this.add.text(1100, 100, 'Treat', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        const treatDisplay = this.add.text(1100, 50, 'Treat', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         treatDisplay.setInteractive();
         treatDisplay.on('pointerdown', () => this.onClickBuyCatInstant(treatCI) );
 
         let treatpileCI = new CatInstant(1, 1);
-        const treatpileDisplay = this.add.text(1100, 150, 'Treat Pile', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        const treatpileDisplay = this.add.text(1100, 100, 'Treat Pile', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         treatpileDisplay.setInteractive();
         treatpileDisplay.on('pointerdown', () => this.onClickBuyCatInstant(treatpileCI) );        
 
         let cheesewheelCI = new CatInstant(1, 1);
-        const cheesewheelDisplay = this.add.text(1100, 200, 'Cheese Wheel', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        const cheesewheelDisplay = this.add.text(1100, 150, 'Cheese Wheel', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         cheesewheelDisplay.setInteractive();
         cheesewheelDisplay.on('pointerdown', () => this.onClickBuyCatInstant(cheesewheelCI) );
 
         let catnipCI = new CatInstant(1, 1);
-        const catnipDisplay = this.add.text(1100, 250, 'Catnip', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        const catnipDisplay = this.add.text(1100, 200, 'Catnip', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         catnipDisplay.setInteractive();
         catnipDisplay.on('pointerdown', () => this.onClickBuyCatInstant(catnipCI) );
 
     }, 
 
     createCatProgressives: function() {
-        const ballCP = new CatProgressive(1, 1, 1, true);
-        const mouseCP = new CatProgressive(1, 1, 1, true);
-        const ponytailholderCP = new CatProgressive(1, 1, 1, true);
-        const twisttieCP = new CatProgressive(1, 1, 1, true);
-        const laserpointerCP = new CatProgressive(1, 1, 1, true);
-        const cushionCP = new CatProgressive(1, 1, 1, true);
-        const keyboardCP = new CatProgressive(1, 1, 1, true);
-        const scratcherCP = new CatProgressive(1, 1, 1, true);
-        const treeCP = new CatProgressive(1, 1, 1, true);
+        const ballCP = new CatProgressive(1, 1, 0, true);
+        const ballDisplay = this.add.text(1100, 250, 'Ball', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        ballDisplay.setInteractive();
+        ballDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(ballCP) );
+
+        const mouseCP = new CatProgressive(1, 1, 0, true);
+        const mouseDisplay = this.add.text(1100, 300, 'Mouse', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        mouseDisplay.setInteractive();
+        mouseDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(mouseCP) );
+
+        const ponytailholderCP = new CatProgressive(1, 1, 0, true);
+        const ponytailholderDisplay = this.add.text(1100, 350, 'Ponytail Holder', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        ponytailholderDisplay.setInteractive();
+        ponytailholderDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(ponytailholderCP) );
+
+        const twisttieCP = new CatProgressive(1, 1, 0, true);
+        const twisttieDisplay = this.add.text(1100, 400, 'Twist Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        twisttieDisplay.setInteractive();
+        twisttieDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(twisttieCP) );
+
+        const laserpointerCP = new CatProgressive(1, 1, 0, true);
+        const laserpointerDisplay = this.add.text(1100, 450, 'Laser Pointer', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        laserpointerDisplay.setInteractive();
+        laserpointerDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(laserpointerCP) );
+
+        const cushionCP = new CatProgressive(1, 1, 0, true);
+        const cushionDisplay = this.add.text(1100, 500, 'Cushion', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        cushionDisplay.setInteractive();
+        cushionDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(cushionCP) );
+
+        const keyboardCP = new CatProgressive(1, 1, 0, true);
+        const keyboardDisplay = this.add.text(1100, 550, 'Keyboard', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        keyboardDisplay.setInteractive();
+        keyboardDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(keyboardCP) );
+
+        const scratcherCP = new CatProgressive(1, 1, 0, true);
+        const scratcherDisplay = this.add.text(1100, 600, 'Scratcher', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        scratcherDisplay.setInteractive();
+        scratcherDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(scratcherCP) );
+
+        const treeCP = new CatProgressive(1, 1, 0, true);
+        const treeDisplay = this.add.text(1100, 650, 'Tree', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        treeDisplay.setInteractive();
+        treeDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(treeCP) );
+
+
     }
 
 });
