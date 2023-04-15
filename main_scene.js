@@ -32,10 +32,11 @@ var MainScene = new Phaser.Class({
         // Stats box
         const statsBox = this.add.text(640, 500, 'stat', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
 
+        // Autoclickers
+        const autoClickers = this.add.text(200, 360, 'autoclicker', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
 
-
-
-
+        // CatStuff
+        const catStuff = this.add.text(1100, 360, 'cats!', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
 
         // set up all objects for buying
         this.createAutoClickers();
