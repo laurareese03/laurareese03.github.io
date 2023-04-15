@@ -135,7 +135,7 @@ var MainScene = new Phaser.Class({
       scratcherCounter.setText(scratcherCP.owned);
       treeCounter.setText(treeCP.owned);
       upgradebuildingBtn.setTexture(buildings[curr_building].image);
-      upgradebuildingPrice.setText(buildings[curr_building].cost);
+      upgradebuildingPrice.setText(buildings[curr_building + 1].cost);
     },
 
     // onclick of cheese
