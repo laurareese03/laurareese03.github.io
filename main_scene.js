@@ -217,12 +217,8 @@ var MainScene = new Phaser.Class({
         console.log(cat_amount, autoclick_tiers[next_autoclick_tier_index])
         if (cat_amount >= autoclick_tiers[next_autoclick_tier_index]) {
           console.log(autoclickers[next_autoclick_tier_index], 'blah')
-<<<<<<< HEAD
           autoclickers[next_autoclick_tier_index].setUnlock()
           displays[next_autoclick_tier_index].setTexture(autoclickers[next_autoclick_tier_index].unlocked_path)
-=======
-          autoclickers[next_autoclick_tier_index].is_unlocked(true);
->>>>>>> 9d5f82ba003ff8c16bb541e2a4b301652ce6ecdf
           next_autoclick_tier_index += 1;
         }
         
