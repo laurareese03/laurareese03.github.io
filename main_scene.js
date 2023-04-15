@@ -2,7 +2,7 @@
 
 var cheeseCounter, catCounter, autoclick_tiers, autoclickers, next_autoclick_tier_index;
 var forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC
-var upgradebuildingBtn;
+var upgradebuildingBtn, upgradebuildingPrice;
 var MainScene = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize: function() {
@@ -83,10 +83,19 @@ var MainScene = new Phaser.Class({
       upgradebuildingBtn.setInteractive();
       upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
 
-      cheeseCounter = this.add.text(640, 515, "Cheese: " + cheese_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
-      catCounter = this.add.text(640, 35, "Cats: " + cat_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      // building visual
+      upgradebuildingBtn = this.add.image(640, 650, buildings[curr_building].image, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      upgradebuildingBtn.setInteractive();
+      upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
 
-      cheesepersecCounter = this.add.text(640, 575, "Cheese/sec: " + cheese_per_sec, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      // building visual
+      upgradebuildingBtn = this.add.image(640, 650, buildings[curr_building].image, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      upgradebuildingBtn.setInteractive();
+      upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
+      upgradebuildingPrice = this.add.text(720, 672, buildings[curr_building].cost, { fill: '#000', fontSize: 15, fontFamily: "American Typewriter" }).setOrigin(0.5);
+
+      cheeseCounter = this.add.text(640, 515, "Cheese: " + cheese_amount + " (" + cheese_per_sec + "/sec)", { fill: '#fff', fontSize: 40, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      catCounter = this.add.text(640, 35, "Cats: " + Math.floor(cat_amount) + " (" + Math.round(cats_per_sec*60) + "/min)", { fill: '#fff', fontSize: 40, fontFamily: "American Typewriter" }).setOrigin(0.5);
       autoclickers = [forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC]
       next_autoclick_tier_index = 1;
 
@@ -94,9 +103,8 @@ var MainScene = new Phaser.Class({
     
     },
     update: function() {
-      cheeseCounter.setText("Cheese: " + cheese_amount);
-      catCounter.setText("Cats: " + Math.floor(cat_amount));
-      cheesepersecCounter.setText("Cheese/sec: " + cheese_per_sec);
+      cheeseCounter.setText("Cheese: " + cheese_amount + " (" + cheese_per_sec + "/sec)");
+      catCounter.setText("Cats: " + Math.floor(cat_amount) + " (" + Math.round(cats_per_sec*60) + "/min)");
       // autoclicker counters
       forkCounter.setText(forkAC.owned);
       spoonCounter.setText(spoonAC.owned);
@@ -120,6 +128,7 @@ var MainScene = new Phaser.Class({
       treeCounter.setText(treeCP.owned);
       
       upgradebuildingBtn.setTexture(buildings[curr_building].image);
+      upgradebuildingPrice.setText(buildings[curr_building].cost);
     },
 
     // onclick of cheese
@@ -211,14 +220,14 @@ var MainScene = new Phaser.Class({
 
     createAutoClickers: function() {
         forkAC = new AutoClick(1, autoclick_tiers[0], 1, 0, true);
-        spoonAC = new AutoClick(3, autoclick_tiers[1], 1, 0, false);
-        sporkAC = new AutoClick(5, autoclick_tiers[2], 1, 0, false);
-        shovelAC = new AutoClick(10, autoclick_tiers[3], 1, 0, false);
-        pickaxeAC = new AutoClick(50, autoclick_tiers[4], 1, 0, false);
-        jackhammerAC = new AutoClick(100, autoclick_tiers[5], 1, 0, false);
+        spoonAC = new AutoClick(3, autoclick_tiers[1], 5, 0, false);
+        sporkAC = new AutoClick(5, autoclick_tiers[2], 10, 0, false);
+        shovelAC = new AutoClick(10, autoclick_tiers[3], 20, 0, false);
+        pickaxeAC = new AutoClick(50, autoclick_tiers[4], 50, 0, false);
+        jackhammerAC = new AutoClick(100, autoclick_tiers[5], 75, 0, false);
         drillAC = new AutoClick(500, autoclick_tiers[6], 1, 0, false);
-        excavatorAC = new AutoClick(1000, autoclick_tiers[7], 1, 0, false);
-        cheesemineAC = new AutoClick(5000, autoclick_tiers[8], 1, 0, false);
+        excavatorAC = new AutoClick(1000, autoclick_tiers[7], 150, 0, false);
+        cheesemineAC = new AutoClick(5000, autoclick_tiers[8], 250, 0, false);
 
         // FORK
         forkCounter = this.add.text(35, 60, forkAC.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
@@ -315,13 +324,13 @@ var MainScene = new Phaser.Class({
     createBuildings: function() {
         curr_building = 0;
         
-        const cardboardboxB = new Building(1, 1, 'cardboardbox');
-        const catCaveB = new Building(1, 10, 'cathouse');
-        const shedB = new Building(1, 100, 'shed');
-        const houseB = new Building(1, 500, 'house');
-        const barnB = new Building(1, 1000, 'barn');
-        const apartmentB = new Building(1, 5000, 'apartment');
-        const catopiaB = new Building(1, 15000, 'catopia');
+        const cardboardboxB = new Building(1, 1);
+        const catCaveB = new Building(1, 10);
+        const shedB = new Building(1, 100);
+        const houseB = new Building(1, 500);
+        const barnB = new Building(1, 1000);
+        const apartmentB = new Building(1, 5000);
+        const catopiaB = new Building(1, 15000);
 
         buildings = [];
         buildings.push(cardboardboxB, catCaveB, shedB, houseB, barnB, apartmentB, catopiaB);
