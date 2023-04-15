@@ -12,10 +12,14 @@ var Home = new Phaser.Class({
     
     create: function() {
         const back_img = this.add.image(640, 360, 'space_back').setOrigin(0.5);
+        
+        this.add.text(640, 200, 'The Clawsmic Mewn', { fill: '#fff', fontSize: 100 }).setOrigin(0.5);
+
         back_img.scale = 0.7
-        const helloButton = this.add.text(640, 360, 'START', { fill: '#fff', fontSize: 80 }).setOrigin(0.5);
+        const helloButton = this.add.text(640, 400, 'START', { fill: '#fff', fontSize: 80 }).setOrigin(0.5);
         helloButton.setInteractive();
         helloButton.on('pointerdown', () => this.updateScene() );
+
     
     },
     update: function() {},
