@@ -50,20 +50,22 @@ var MainScene = new Phaser.Class({
         moon_img.on('pointerdown', () => this.onClickCheese() );
 
       // building visual
-      const upgradebuildingBtn = this.add.text(640, 300, 'upgrade building', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
+      const upgradebuildingBtn = this.add.text(640, 300, 'upgrade building', { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
       upgradebuildingBtn.setInteractive();
       upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
 
-      cheeseCounter = this.add.text(640, 250, cheese_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-      catCounter = this.add.text(640, 450, cat_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-
       autoclick_tiers = [1,3,7,15,30,50,75,100,150]
+      
       // set up all objects for buying
       this.createAutoClickers();
       this.createBuildings();
       this.createCatInstants();
       this.createCatProgressives();
 
+      cheeseCounter = this.add.text(640, 250, cheese_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      catCounter = this.add.text(640, 450, cat_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+
+      cheesepersecCounter = this.add.text(640, 600, cheese_per_sec, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
       autoclickers = [forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC]
       next_autoclick_tier_index = 1;
 
@@ -73,6 +75,8 @@ var MainScene = new Phaser.Class({
     update: function() {
       cheeseCounter.setText(cheese_amount);
       catCounter.setText(Math.floor(cat_amount));
+      cheesepersecCounter.setText(cheese_per_sec);
+      forkCounter.setText(forkAC.owned);
     },
 
     // onclick of cheese
@@ -83,11 +87,10 @@ var MainScene = new Phaser.Class({
 
     // onclick of buying an autoclicker
     onClickBuyAutoClicker: function(clicker) {
+        console.log("auto", forkAC.owned);
         // check if it's unlocked
-        console.log(clicker.is_unlocked);
         if (clicker.is_unlocked) {    
             // get cost of clicker
-            console.log(clicker.cost);
             click_cost = clicker.cost;
             // if enough cheese owned
             if (cheese_amount >= click_cost) {
@@ -95,6 +98,8 @@ var MainScene = new Phaser.Class({
                 cheese_amount -= click_cost;
                 // increase cheese per second amount
                 cheese_per_sec += clicker.base_output;
+                // increase owned number of autoclicker
+                clicker.owned += 1;
             }
         }
     },
@@ -166,7 +171,9 @@ var MainScene = new Phaser.Class({
         cheesemineAC = new AutoClick(5000, autoclick_tiers[8], 1, 0, false);
 
         // Autoclickers
-        const forkDisplay = this.add.image(150, 60, 'fork').setOrigin(0.5);
+        forkCounter = this.add.text(35, 60, forkAC.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
+        forkCost = this.add.text(315, 60, "$" + forkAC.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" }).setOrigin(0.5);
+        const forkDisplay = this.add.image(175, 60, 'fork').setOrigin(0.5);
         forkDisplay.scale = 1.4;
         forkDisplay.setInteractive();
         forkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(forkAC) );
