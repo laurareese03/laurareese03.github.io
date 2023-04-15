@@ -125,19 +125,17 @@ var MainScene = new Phaser.Class({
     },
 
     onClickBuyCatProgressive(item) {
-        // check if it's been unlocked
-        if (item.is_unlocked) {
-            // get cost of item
-            item_cost = item.cost;
-            // if enough cheese owned
-            if (cheese_amount >= item_cost) {
-                // subtract amount of cheese cost from owned
-                cheese_amount -= item_cost;
-                // increase cats per second amount
-                cats_per_sec += item.cats_per_sec;
-                // update displayed cats per minute
-
-            }
+      // check if it's been unlocked
+      if (item.is_unlocked) {
+        // get cost of item
+        item_cost = item.cost;
+        // if enough cheese owned
+        if (cheese_amount >= item_cost) {
+          // subtract amount of cheese cost from owned
+          cheese_amount -= item_cost;
+          // increase cats per second amount
+          cats_per_sec += item.cats_per_sec;
+          // update displayed cats per minute
         }
       }
     },
