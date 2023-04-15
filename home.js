@@ -6,10 +6,14 @@ var Home = new Phaser.Class({
     },
     init: function() {},
     preload: function() {
+        this.load.setBaseURL('https://laurareese03.github.io/');
+        this.load.image('space_back', 'assets/space_back2.jpg');
     },
     
     create: function() {
-        const helloButton = this.add.text(640, 360, 'START', { fill: '#000', fontSize: 50 }).setOrigin(0.5);
+        const back_img = this.add.image(640, 360, 'space_back').setOrigin(0.5);
+        back_img.scale = 0.7
+        const helloButton = this.add.text(640, 360, 'START', { fill: '#fff', fontSize: 80 }).setOrigin(0.5);
         helloButton.setInteractive();
         helloButton.on('pointerdown', () => this.updateScene() );
     
@@ -18,7 +22,7 @@ var Home = new Phaser.Class({
 
     updateScene: function() { 
         this.scene.start("MainScene", { 
-            "message": "Game Over" 
+            "message": "Start Game" 
         });
     }
 });
