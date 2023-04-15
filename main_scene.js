@@ -34,9 +34,15 @@ var MainScene = new Phaser.Class({
         this.load.image('apartment', 'assets/Apartment.png');
         this.load.image('catopia', 'assets/catopia.png');
         // cat items
+        this.load.image('ball', 'assets/ball.png');
         this.load.image('mouse', 'assets/mouse.png');
+        this.load.image('hairtie', 'assets/mouse.png');
+        this.load.image('twisttie', 'assets/twist_tie.png');
         this.load.image('laserpointer', 'assets/laser_pointer.png');
-
+        this.load.image('cushion', 'assets/cushion.png');
+        this.load.image('keyboard', 'assets/keyboard.png');
+        this.load.image('scratcher', 'assets/scratcher.png');
+        this.load.image('tree', 'assets/tree.png');
     },
 
     create: function() {
@@ -307,10 +313,10 @@ var MainScene = new Phaser.Class({
 
     createCatInstants: function() {
         // TREAT
-        let treatCI = new CatInstant(1, 1);   
-        const treatDisplay = this.add.text(1100, 50, 'Treat', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
-        treatDisplay.setInteractive();
-        treatDisplay.on('pointerdown', () => this.onClickBuyCatInstant(treatCI) );
+        //let treatCI = new CatInstant(1, 1);   
+        //const treatDisplay = this.add.text(1100, 50, 'Treat', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        //treatDisplay.setInteractive();
+        //treatDisplay.on('pointerdown', () => this.onClickBuyCatInstant(treatCI) );
 
         /*
         // TREAT PILE
@@ -336,19 +342,20 @@ var MainScene = new Phaser.Class({
     createCatProgressives: function() {
         // BALL
         const ballCP = new CatProgressive(0, 1, 0.033, 0, true);
-        //ballCounter = this.add.text(35, 60, ballCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
-        //ballCost = this.add.text(290, 45, ballCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
-        //const ball_cheese = this.add.image(317, 60, 'moon').setOrigin(0.5);
-        //ball_cheese.scale = 0.25; 
-        //const ballDisplay = this.add.text(1100, 250, 'Ball', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
-        //ballDisplay.setInteractive();
-        //ballDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(ballCP) );
+        ballCounter = this.add.text(1245, 60, ballCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
+        ballCost = this.add.text(957, 45, ballCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
+        const ball_cheese = this.add.image(985, 60, 'moon').setOrigin(0.5);
+        ball_cheese.scale = 0.25; 
+        const ballDisplay = this.add.image(1100, 60, 'ball').setOrigin(0.5);
+        ballDisplay.scale = 1.4;
+        ballDisplay.setInteractive();
+        ballDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(ballCP) );
 
         // MOUSE
-        const mouseCP = new CatProgressive(0, 1, 0.083, 0, true);
+        const mouseCP = new CatProgressive(0, 15, 0.083, 0, true);
         mouseCounter = this.add.text(1245, 135, mouseCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
-        mouseCost = this.add.text(900, 120, mouseCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
-        const mouse_cheese = this.add.image(950, 135, 'moon').setOrigin(0.5);
+        mouseCost = this.add.text(940, 120, mouseCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
+        const mouse_cheese = this.add.image(985, 135, 'moon').setOrigin(0.5);
         mouse_cheese.scale = 0.25; 
         const mouseDisplay = this.add.image(1110, 135, 'mouse').setOrigin(0.5);
         mouseDisplay.scale = 1.4;
@@ -356,43 +363,43 @@ var MainScene = new Phaser.Class({
         mouseDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(mouseCP) );
 
         // HAIR TIE
-        const hairtieCP = new CatProgressive(0, 1, 0.17, 0, true);
+        const hairtieCP = new CatProgressive(0, 50, 0.17, 0, true);
         const hairtieDisplay = this.add.text(1100, 350, 'Hair Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         hairtieDisplay.setInteractive();
         hairtieDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(hairtieCP) );
 
         // TWIST TIE
-        const twisttieCP = new CatProgressive(0, 1, 1, 0.33, true);
+        const twisttieCP = new CatProgressive(0, 100, 1, 0.33, true);
         const twisttieDisplay = this.add.text(1100, 400, 'Twist Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         twisttieDisplay.setInteractive();
         twisttieDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(twisttieCP) );
 
         // LASER POINTER
-        const laserpointerCP = new CatProgressive(0, 1, 0.5, 0, true);
+        const laserpointerCP = new CatProgressive(0, 400, 0.5, 0, true);
         const laserpointerDisplay = this.add.text(1100, 450, 'Laser Pointer', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         laserpointerDisplay.setInteractive();
         laserpointerDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(laserpointerCP) );
 
         // CUSHION
-        const cushionCP = new CatProgressive(0, 1, 1, 0.83, true);
+        const cushionCP = new CatProgressive(0, 1, 750, 0.83, true);
         const cushionDisplay = this.add.text(1100, 500, 'Cushion', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         cushionDisplay.setInteractive();
         cushionDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(cushionCP) );
 
         // KEYBOARD
-        const keyboardCP = new CatProgressive(0, 1, 1, 1.67, true);
+        const keyboardCP = new CatProgressive(0, 1, 1250, 1.67, true);
         const keyboardDisplay = this.add.text(1100, 550, 'Keyboard', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         keyboardDisplay.setInteractive();
         keyboardDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(keyboardCP) );
 
         // SCRATCHER
-        const scratcherCP = new CatProgressive(0, 1, 1, 2.5, true);
+        const scratcherCP = new CatProgressive(0, 1, 2000, 2.5, true);
         const scratcherDisplay = this.add.text(1100, 600, 'Scratcher', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         scratcherDisplay.setInteractive();
         scratcherDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(scratcherCP) );
 
         // TREE
-        const treeCP = new CatProgressive(0, 1, 1, 3.33, true);
+        const treeCP = new CatProgressive(0, 1, 5000, 3.33, true);
         const treeDisplay = this.add.text(1100, 650, 'Tree', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         treeDisplay.setInteractive();
         treeDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(treeCP) );
