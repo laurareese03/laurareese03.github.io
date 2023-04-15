@@ -19,8 +19,14 @@ var MainScene = new Phaser.Class({
         // set up cheese count
         cheese_amount = 0;
         cheese_per_sec = 0;
+
+        // set up cat amount
+        cat_amount = 0;
+        cats_per_sec = 0;
+
+        // test cheese increase
         console.log(cheese_amount);
-        const test = this.add.text(240, 360, 'test', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
+        const test = this.add.text(640, 360, 'cheese', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
         test.setInteractive();
         test.on('pointerdown', () => this.onClickCheese() );
 
@@ -66,27 +72,51 @@ var MainScene = new Phaser.Class({
     },
 
     onClickBuyCatInstant(item) {
+        // get cost of item
+
+        // if enough cheese owned
+
+            // subtract amount of cheese cost from owned
+
+            // increase number of cats
 
     },
 
     onClickBuyCatProgressive(item) {
+        // check if it's been unlocked
+
+            // get cost of item
+
+            // if enough cheese owned
+
+                // subtract amount of cheese cost from owned
+
+                // increase cats per second amount
+
+                // update displayed cats per minute
 
     },
 
     updateStatsBySecond: function() {
-        //console.log("hi")
+        // add cheese per second to cheese amount
+        cheese_amount += cheese_per_sec;
+        // update cheese display value
+
+        // add cats per second to cats amount    
+        
+        // update cat display value
     },
 
     createAutoClickers: function() {
-        const forkAC = new AutoClick(1, 1, 1, 1, true);
-        const spoonAC = new AutoClick(1, 1, 1, 1, true);
-        const sporkAC = new AutoClick(1, 1, 1, 1, true);
-        const shovelAC = new AutoClick(1, 1, 1, 1, true);
-        const pickaxeAC = new AutoClick(1, 1, 1, 1, true);
-        const jackhammerAC = new AutoClick(1, 1, 1, 1, true);
-        const drillAC = new AutoClick(1, 1, 1, 1, true);
-        const excavatorAC = new AutoClick(1, 1, 1, 1, true);
-        const cheesemineAC = new AutoClick(1, 1, 1, 1, true);
+        forkAC = new AutoClick(1, 1, 1, 1, true);
+        spoonAC = new AutoClick(1, 1, 1, 1, true);
+        sporkAC = new AutoClick(1, 1, 1, 1, true);
+        shovelAC = new AutoClick(1, 1, 1, 1, true);
+        pickaxeAC = new AutoClick(1, 1, 1, 1, true);
+        jackhammerAC = new AutoClick(1, 1, 1, 1, true);
+        drillAC = new AutoClick(1, 1, 1, 1, true);
+        excavatorAC = new AutoClick(1, 1, 1, 1, true);
+        cheesemineAC = new AutoClick(1, 1, 1, 1, true);
     },
 
     createBuildings: function() {
