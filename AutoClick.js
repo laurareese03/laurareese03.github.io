@@ -3,12 +3,14 @@
 //Base-output is item addition
 
 class AutoClick {
-    constructor(cost, unlock_cost, base_output, owned, is_unlocked){
+    constructor(cost, unlock_cost, base_output, owned, is_unlocked, locked_path, unlocked_path){
         this.cost = cost;
         this.unlock_cost = unlock_cost;
         this.base_output = base_output;
         this.owned = owned;
         this.is_unlocked = is_unlocked;
+        this.locked_path = locked_path;
+        this.unlocked_path = unlocked_path;
     }
     //getters
     get Base(){
