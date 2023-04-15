@@ -144,9 +144,6 @@ var MainScene = new Phaser.Class({
       upgradebuildingBtn.setTexture(buildings[curr_building].image);
       upgradebuildingPrice.setText(buildings[curr_building].cost);
 
-      // set images 
-      //spoonDisplay.setImage(spoonAC.image);
-
 
     },
 
@@ -233,30 +230,33 @@ var MainScene = new Phaser.Class({
           console.log(autoclickers[next_autoclick_tier_index], 'blah')
           autoclickers[next_autoclick_tier_index].is_unlocked = true;
           if (autoclickers[next_autoclick_tier_index].is_unlocked) {
-            autoclickers[next_autoclick_tier_index]
+            console.log("index" + next_autoclick_tier_index);
+
           }
           next_autoclick_tier_index += 1;
         }
         
     },
 
+
+
     createAutoClickers: function() {
-        forkAC = new AutoClick(1, autoclick_tiers[0], 1, 0, true, 'fork');
-        spoonAC = new AutoClick(3, autoclick_tiers[1], 5, 0, false, 'lockedspoon');
-        sporkAC = new AutoClick(5, autoclick_tiers[2], 10, 0, false, 'lockedspork');
-        shovelAC = new AutoClick(10, autoclick_tiers[3], 20, 0, false, 'lockedshovel');
-        pickaxeAC = new AutoClick(50, autoclick_tiers[4], 50, 0, false, 'lockedpickaxe');
-        jackhammerAC = new AutoClick(100, autoclick_tiers[5], 75, 0, false, 'lockedjackhammer');
-        drillAC = new AutoClick(500, autoclick_tiers[6], 1, 0, false, 'lockeddrill');
-        excavatorAC = new AutoClick(1000, autoclick_tiers[7], 150, 0, false, 'lockedexca');
-        cheesemineAC = new AutoClick(5000, autoclick_tiers[8], 250, 0, false, 'lockedmine');
+        forkAC = new AutoClick(1, autoclick_tiers[0], 1, 0, true);
+        spoonAC = new AutoClick(3, autoclick_tiers[1], 5, 0, false);
+        sporkAC = new AutoClick(5, autoclick_tiers[2], 10, 0, false);
+        shovelAC = new AutoClick(10, autoclick_tiers[3], 20, 0, false);
+        pickaxeAC = new AutoClick(50, autoclick_tiers[4], 50, 0, false);
+        jackhammerAC = new AutoClick(100, autoclick_tiers[5], 75, 0, false);
+        drillAC = new AutoClick(500, autoclick_tiers[6], 1, 0, false);
+        excavatorAC = new AutoClick(1000, autoclick_tiers[7], 150, 0, false);
+        cheesemineAC = new AutoClick(5000, autoclick_tiers[8], 250, 0, false);
 
         // FORK
         forkCounter = this.add.text(35, 60, forkAC.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
         forkCost = this.add.text(290, 45, forkAC.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
         const fork_cheese = this.add.image(317, 60, 'moon').setOrigin(0.5);
         fork_cheese.scale = 0.25; 
-        const forkDisplay = this.add.image(175, 60, forkAC.image).setOrigin(0.5);
+        const forkDisplay = this.add.image(175, 60, 'fork').setOrigin(0.5);
         forkDisplay.scale = 1.4;
         forkDisplay.setInteractive();
         forkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(forkAC) );
@@ -266,7 +266,7 @@ var MainScene = new Phaser.Class({
         spoonCost = this.add.text(290, 120, spoonAC.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
         const spoon_cheese = this.add.image(320, 135, 'moon').setOrigin(0.5);
         spoon_cheese.scale = 0.25; 
-        const spoonDisplay = this.add.image(175, 135, spoonAC.image).setOrigin(0.5);
+        const spoonDisplay = this.add.image(175, 135, 'lockedspoon').setOrigin(0.5);
         spoonDisplay.scale = 1.4;
         spoonDisplay.setInteractive();
         spoonDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(spoonAC) );
@@ -276,7 +276,7 @@ var MainScene = new Phaser.Class({
         sporkCost = this.add.text(290, 195, sporkAC.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" })
         const spork_cheese = this.add.image(320, 210, 'moon').setOrigin(0.5);
         spork_cheese.scale = 0.25; 
-        const sporkDisplay = this.add.image(175, 210, 'lockedspoon').setOrigin(0.5);
+        const sporkDisplay = this.add.image(175, 210, 'lockedspork').setOrigin(0.5);
         sporkDisplay.scale = 1.4;
         sporkDisplay.setInteractive();
         sporkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(sporkAC) ).setOrigin(0.5);
