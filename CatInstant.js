@@ -10,7 +10,7 @@ class CatInstant {
     return this.cost();
   }
 
-  // Getter - cost
+  // Getter - number of cats
   get num_cats() {
     return this.num_cats();
   }
