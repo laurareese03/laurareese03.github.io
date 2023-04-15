@@ -336,13 +336,13 @@ var MainScene = new Phaser.Class({
     createBuildings: function() {
         curr_building = 0;
         
-        const cardboardboxB = new Building(1, 1, 'cardboardbox');
-        const catCaveB = new Building(1, 10, 'cathouse');
-        const shedB = new Building(1, 100, 'shed');
-        const houseB = new Building(1, 500, 'house');
-        const barnB = new Building(1, 1000, 'barn');
-        const apartmentB = new Building(1, 5000, 'apartment');
-        const catopiaB = new Building(1, 15000, 'catopia');
+        const cardboardboxB = new Building(10, 1, 'cardboardbox');
+        const catCaveB = new Building(20, 10, 'cathouse');
+        const shedB = new Building(50, 100, 'shed');
+        const houseB = new Building(100, 500, 'house');
+        const barnB = new Building(200, 1000, 'barn');
+        const apartmentB = new Building(500, 5000, 'apartment');
+        const catopiaB = new Building(1000, 15000, 'catopia');
 
         buildings = [];
         buildings.push(cardboardboxB, catCaveB, shedB, houseB, barnB, apartmentB, catopiaB);
