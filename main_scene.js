@@ -71,6 +71,9 @@ var MainScene = new Phaser.Class({
       cheese_amount = 0;
       cheese_per_sec = 0;
 
+      //set up cat limit
+      cat_limit = 0;
+
       // set up cat amount
       cat_amount = 1;
       cats_per_sec = 0;
@@ -104,7 +107,9 @@ var MainScene = new Phaser.Class({
 
       cheeseCounter = this.add.text(640, 515, "Cheese: " + cheese_amount + " (" + cheese_per_sec + "/sec)", { fill: '#fff', fontSize: 40, fontFamily: "American Typewriter" }).setOrigin(0.5);
       catCounter = this.add.text(640, 35, "Cats: " + Math.floor(cat_amount) + " (" + Math.round(cats_per_sec*60) + "/min)", { fill: '#fff', fontSize: 40, fontFamily: "American Typewriter" }).setOrigin(0.5);
-      autoclickers = [forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC]
+      autoclickers = [forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC];
+      console.log("Cat limit: " +  autoclick_tiers[cat_limit]);
+      building_limit = this.add.text(640, 575, "Cat limit: " +  autoclick_tiers[cat_limit], { fill: '#fff', fontSize: 40, fontFamily: "American Typewriter" }).setOrigin(0.5);
       next_autoclick_tier_index = 1;
 
       setInterval(this.updateStatsBySecond, 1000);
@@ -222,6 +227,7 @@ var MainScene = new Phaser.Class({
           autoclickers[next_autoclick_tier_index].setUnlock()
           displays[next_autoclick_tier_index].setTexture(autoclickers[next_autoclick_tier_index].unlocked_path)
           next_autoclick_tier_index += 1;
+          cat_limit += 1;
         }
         
     },
