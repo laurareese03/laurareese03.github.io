@@ -1,6 +1,7 @@
 class CatProgressive {
 
-    constructor(cost, cats_per_sec, curr_output, is_unlocked) {
+    constructor(owned, cost, cats_per_sec, curr_output, is_unlocked) {
+      this.owned = owned;
       this.cost = cost;
       this.cats_per_sec = cats_per_sec;
       this.curr_output = curr_output;
