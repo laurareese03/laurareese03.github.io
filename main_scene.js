@@ -9,7 +9,7 @@ var MainScene = new Phaser.Class({
         // import background photo
         this.load.setBaseURL('https://laurareese03.github.io/');
         this.load.image('space_back', 'assets/space_back2.jpg');
-        this.load.image('moon', 'assets/moon.jpg');
+        this.load.image('moon', 'assets/moon.png');
         this.load.image('button', 'assets/Button.png');
     },
 
@@ -147,7 +147,7 @@ var MainScene = new Phaser.Class({
         cheesemineAC = new AutoClick(1, 1, 1, 1, true);
 
         // Autoclickers
-        const button_fork = this.add.image(50, 125, 'button');
+        const button_fork = this.add.image(100, 150, 'button');
         const forkDisplay = this.add.text(50, 125, 'Fork', { fill: '#fff', fontSize: 40 });
         forkDisplay.setInteractive();
         forkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(forkAC) );
