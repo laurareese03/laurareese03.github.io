@@ -30,6 +30,7 @@ var MainScene = new Phaser.Class({
         this.load.image('cheesemine', 'assets/cheesemine.png');
         // locked autoclickers
         this.load.image('lockedspoon', 'assets/spoon_locked.png');
+        this.load.image('lockedspork', 'assets/spork_locked.png');
         this.load.image('lockedshovel', 'assets/shovel_locked.png');
         this.load.image('lockedpick', 'assets/pickaxe_pickaxe.png');
         this.load.image('lockedjack', 'assets/jackhammer_locked.png');
