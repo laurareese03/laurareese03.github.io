@@ -12,28 +12,28 @@ class AutoClick {
     }
 
     //getters
-    getBase(){
+    get Base(){
         return this.base_output;
     };
-    getCost(){
+    get Cost(){
         return this.cost;
     }
-    getUnlockCost(){
+    get UnlockCost(){
         return this.unlock_cost;
     }
-    getUnlock(){
+    get Unlock(){
         return this.is_unlocked;
     }
-    getOwned(){
+    get Owned(){
         return this.owned;
     }
     //setters
 
-    setUnlockCost(unlock_cost){
+    set UnlockCost(unlock_cost){
         this.unlock_cost = unlock_cost;
     }
-    setUnlock(){
-        this.is_unlocked = this.is_unlocked;
+    set Unlock(is_unlocked){
+        this.is_unlocked = is_unlocked;
     }
 }
 
