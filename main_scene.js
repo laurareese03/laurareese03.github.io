@@ -7,7 +7,7 @@ var MainScene = new Phaser.Class({
     },
     preload: function() {
     },
-    createAutoClickers: function() {
+    /*createAutoClickers: function() {
         const forkAC = new AutoClick(1, 1, 1, 1, True);
         const spoonAC = new AutoClick(1, 1, 1, 1, True);
         const sporkAC = new AutoClick(1, 1, 1, 1, True);
@@ -17,7 +17,7 @@ var MainScene = new Phaser.Class({
         const drillAC = new AutoClick(1, 1, 1, 1, True);
         const excavatorAC = new AutoClick(1, 1, 1, 1, True);
         const cheesemineAC = new AutoClick(1, 1, 1, 1, True);
-    },
+    },*/
 
     createBuildings: function() {
         const cardboardboxB = new Building(1, 1);
@@ -49,10 +49,10 @@ var MainScene = new Phaser.Class({
         const treeCP = new CatProgressive(1, 1, 1, True);
     },
     create: function() {
-        createAutoClickers();
-        createBuildings();
-        createCatInstants();
-        createCatProgressives();
+        //this.createAutoClickers();
+        this.createBuildings();
+        this.createCatInstants();
+        this.createCatProgressives();
         var text = this.add.text(
             640, 
             360, 

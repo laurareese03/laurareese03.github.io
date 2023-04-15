@@ -1,4 +1,4 @@
-class CatInstant {
+class CatProgressive {
 
     constructor(cost, cats_per_sec, curr_output, is_unlocked) {
       this.cost = cost;
