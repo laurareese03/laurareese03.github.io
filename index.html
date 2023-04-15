@@ -27,6 +27,12 @@
 
         const game = new Phaser.Game(phaserConfig);
 
+        // set up global variables that we want to access throughout the game
+        game.global = {
+            cheese_amount : 0,
+            cheese_per_sec : 0
+        }
+
     </script>
 </body>
 </html>
