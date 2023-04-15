@@ -16,6 +16,8 @@ var MainScene = new Phaser.Class({
         this.load.image('moon', 'assets/moon.png');
         this.load.image('button', 'assets/Button.png');
         this.load.image('cat', 'assets/cat.png');
+        this.load.image('fork', 'assets/fork.png');
+        this.load.image('spoon', 'assets/spoon.png');
     },
 
     create: function() {
@@ -31,12 +33,15 @@ var MainScene = new Phaser.Class({
       cat_amount = 1;
       cats_per_sec = 0;
 
-      // Cheese Visual
-      const moon_img = this.add.image(640, 250, 'moon').setOrigin(0.5);
-      moon_img.scale = 3.5; 
+        // Cheese Visual
+        const moon_img = this.add.image(640, 300, 'moon').setOrigin(0.5);
+        moon_img.scale = 3.5; 
 
-      moon_img.setInteractive();
-      moon_img.on('pointerdown', () => this.onClickCheese() );
+        // cat visual
+        this.add.image(640, 125, 'cat').setOrigin(0.5);
+
+        moon_img.setInteractive();
+        moon_img.on('pointerdown', () => this.onClickCheese() );
 
       // building visual
       const upgradebuildingBtn = this.add.text(640, 300, 'upgrade building', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
@@ -61,7 +66,7 @@ var MainScene = new Phaser.Class({
     },
     update: function() {
       cheeseCounter.setText(cheese_amount);
-      catCounter.setText(cat_amount);
+      catCounter.setText(Math.floor(cat_amount));
     },
 
     // onclick of cheese
@@ -155,12 +160,11 @@ var MainScene = new Phaser.Class({
         cheesemineAC = new AutoClick(5000, autoclick_tiers[8], 1, 0, false);
 
         // Autoclickers
-        const button_fork = this.add.image(100, 150, 'button');
-        const forkDisplay = this.add.text(50, 125, 'Fork', { fill: '#fff', fontSize: 40 });
+        const forkDisplay = this.add.image(50, 125, 'fork');
         forkDisplay.setInteractive();
         forkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(forkAC) );
 
-        const spoonDisplay = this.add.text(50, 175, 'Spoon', { fill: '#fff', fontSize: 40 });
+        const spoonDisplay = this.add.image(50, 175, 'spoon');
         spoonDisplay.setInteractive();
         spoonDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(spoonAC) );
 
