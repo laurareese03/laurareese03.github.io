@@ -9,6 +9,9 @@ var MainScene = new Phaser.Class({
     },
     create: function() {
         createAutoClickers();
+        createBuildings();
+        createCatInstants();
+        createCatProgressives();
         var text = this.add.text(
             640, 
             360, 
@@ -33,6 +36,37 @@ var MainScene = new Phaser.Class({
         const drillAC = new AutoClick(1, 1, 1, 1, True);
         const excavatorAC = new AutoClick(1, 1, 1, 1, True);
         const cheesemineAC = new AutoClick(1, 1, 1, 1, True);
+    },
+
+    createBuildings: function() {
+        const cardboardboxB = new Building(1, 1);
+        const catCaveB = new Building(1, 1);
+        const shedB = new Building(1, 1);
+        const houseB = new Building(1, 1);
+        const barnB = new Building(1, 1);
+        const studioApartmentComplexB = new Building(1, 1);
+        const multibedApartmentComplexB = new Building(1, 1);
+        const catopiaB = new Building(1, 1);
+    },
+
+    createCatInstants: function() {
+        const treatCI = new CatInstant(1, 1);
+        const treatpileCI = new CatInstant(1, 1);
+        const cheesewheelCI = new CatInstant(1, 1);
+        const catnipCI = new CatInstant(1, 1);
+    }, 
+
+    createCatProgressives: function() {
+        const ballCP = new CatProgressive(1, 1, 1, True);
+        const mouseCP = new CatProgressive(1, 1, 1, True);
+        const ponytailholderCP = new CatProgressive(1, 1, 1, True);
+        const twisttieCP = new CatProgressive(1, 1, 1, True);
+        const laserpointerCP = new CatProgressive(1, 1, 1, True);
+        const cushionCP = new CatProgressive(1, 1, 1, True);
+        const keyboardCP = new CatProgressive(1, 1, 1, True);
+        const scratcherCP = new CatProgressive(1, 1, 1, True);
+        const treeCP = new CatProgressive(1, 1, 1, True);
     }
+
 });
 
