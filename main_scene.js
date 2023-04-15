@@ -73,28 +73,31 @@ var MainScene = new Phaser.Class({
 
     onClickBuyCatInstant(item) {
         // get cost of item
-
+        item_cost = item.cost;
         // if enough cheese owned
-
+        if (cheese_amount >= item_cost) {
             // subtract amount of cheese cost from owned
-
+            cheese_amount -= item_cost;
             // increase number of cats
-
+            cat_amount += item.num_cats;
+        }
     },
 
     onClickBuyCatProgressive(item) {
         // check if it's been unlocked
-
+        if (item.is_unlocked) {
             // get cost of item
-
+            item_cost = item.cost;
             // if enough cheese owned
-
+            if (cheese_amount >= item_cost) {
                 // subtract amount of cheese cost from owned
-
+                cheese_amount -= item_cost;
                 // increase cats per second amount
-
+                
                 // update displayed cats per minute
 
+            }
+        }
     },
 
     updateStatsBySecond: function() {
@@ -105,6 +108,7 @@ var MainScene = new Phaser.Class({
         // add cats per second to cats amount    
         
         // update cat display value
+        
     },
 
     createAutoClickers: function() {
