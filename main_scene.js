@@ -18,6 +18,12 @@ var MainScene = new Phaser.Class({
         this.load.image('cat', 'assets/cat.png');
         this.load.image('fork', 'assets/fork.png');
         this.load.image('spoon', 'assets/spoon.png');
+        this.load.image('shovel', 'assets/shovel.png');
+        this.load.image('pickaxe', 'assets/pickaxe.png');
+        this.load.image('jackhammer', 'assets/jackhammer.png');
+        this.load.image('drill', 'assets/drill.png');
+        this.load.image('excavator', 'assets/excavator.png');
+        this.load.image('cheesemine', 'assets/cheesemine.png');
     },
 
     create: function() {
@@ -33,9 +39,9 @@ var MainScene = new Phaser.Class({
       cat_amount = 1;
       cats_per_sec = 0;
 
-        // Cheese Visual
-        const moon_img = this.add.image(640, 300, 'moon').setOrigin(0.5);
-        moon_img.scale = 3.5; 
+      // Cheese Visual
+      const moon_img = this.add.image(640, 300, 'moon').setOrigin(0.5);
+      moon_img.scale = 3.5; 
 
         // cat visual
         this.add.image(640, 125, 'cat').setOrigin(0.5);
@@ -44,20 +50,22 @@ var MainScene = new Phaser.Class({
         moon_img.on('pointerdown', () => this.onClickCheese() );
 
       // building visual
-      const upgradebuildingBtn = this.add.text(640, 300, 'upgrade building', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
+      const upgradebuildingBtn = this.add.text(640, 300, 'upgrade building', { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
       upgradebuildingBtn.setInteractive();
       upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
 
-      cheeseCounter = this.add.text(640, 250, cheese_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-      catCounter = this.add.text(640, 450, cat_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-
       autoclick_tiers = [1,3,7,15,30,50,75,100,150]
+      
       // set up all objects for buying
       this.createAutoClickers();
       this.createBuildings();
       this.createCatInstants();
       this.createCatProgressives();
 
+      cheeseCounter = this.add.text(640, 250, cheese_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      catCounter = this.add.text(640, 450, cat_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+
+      cheesepersecCounter = this.add.text(640, 600, cheese_per_sec, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
       autoclickers = [forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC]
       next_autoclick_tier_index = 1;
 
@@ -67,6 +75,8 @@ var MainScene = new Phaser.Class({
     update: function() {
       cheeseCounter.setText(cheese_amount);
       catCounter.setText(Math.floor(cat_amount));
+      cheesepersecCounter.setText(cheese_per_sec);
+      forkCounter.setText(forkAC.owned);
     },
 
     // onclick of cheese
@@ -77,11 +87,10 @@ var MainScene = new Phaser.Class({
 
     // onclick of buying an autoclicker
     onClickBuyAutoClicker: function(clicker) {
+        console.log("auto", forkAC.owned);
         // check if it's unlocked
-        console.log(clicker.is_unlocked);
         if (clicker.is_unlocked) {    
             // get cost of clicker
-            console.log(clicker.cost);
             click_cost = clicker.cost;
             // if enough cheese owned
             if (cheese_amount >= click_cost) {
@@ -89,6 +98,8 @@ var MainScene = new Phaser.Class({
                 cheese_amount -= click_cost;
                 // increase cheese per second amount
                 cheese_per_sec += clicker.base_output;
+                // increase owned number of autoclicker
+                clicker.owned += 1;
             }
         }
     },
@@ -160,41 +171,53 @@ var MainScene = new Phaser.Class({
         cheesemineAC = new AutoClick(5000, autoclick_tiers[8], 1, 0, false);
 
         // Autoclickers
-        const forkDisplay = this.add.image(50, 125, 'fork');
+        forkCounter = this.add.text(35, 60, forkAC.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
+        forkCost = this.add.text(315, 60, "$" + forkAC.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" }).setOrigin(0.5);
+        const forkDisplay = this.add.image(175, 60, 'fork').setOrigin(0.5);
+        forkDisplay.scale = 1.4;
         forkDisplay.setInteractive();
         forkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(forkAC) );
 
-        const spoonDisplay = this.add.image(50, 175, 'spoon');
+        const spoonDisplay = this.add.image(150, 135, 'spoon').setOrigin(0.5);
+        spoonDisplay.scale = 1.4;
         spoonDisplay.setInteractive();
         spoonDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(spoonAC) );
 
-        const sporkDisplay = this.add.text(50, 225, 'Spork', { fill: '#fff', fontSize: 40 });
+        const sporkDisplay = this.add.image(150, 210, 'spoon').setOrigin(0.5);
+        sporkDisplay.scale = 1.4;
         sporkDisplay.setInteractive();
-        sporkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(sporkAC) );
+        sporkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(sporkAC) ).setOrigin(0.5);
 
-        const shovelDisplay = this.add.text(50, 275, 'Shovel', { fill: '#fff', fontSize: 40 });
+        const shovelDisplay = this.add.image(150, 285, 'shovel').setOrigin(0.5);
+        shovelDisplay.scale = 1.4;
         shovelDisplay.setInteractive();
         shovelDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(shovelAC) );
+        spoonDisplay.scale = 1.4;
 
-        const pickaxeDisplay = this.add.text(50, 325, 'Pickaxe', { fill: '#fff', fontSize: 40 });
+        const pickaxeDisplay = this.add.image(150, 360, 'pickaxe').setOrigin(0.5);
+        pickaxeDisplay.scale = 1.4;
         pickaxeDisplay.setInteractive();
         pickaxeDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(pickaxeAC) );
 
-        const jackhammerDisplay = this.add.text(50, 375, 'Jackhammer', { fill: '#fff', fontSize: 40 });
+        const jackhammerDisplay = this.add.image(150, 435, 'jackhammer').setOrigin(0.5);
+        jackhammerDisplay.scale = 1.4;
         jackhammerDisplay.setInteractive();
-        jackhammerDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(jackhammerAC) );
+        jackhammerDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(jackhammerAC) ).setOrigin(0.5);
 
-        const drillDisplay = this.add.text(50, 425, 'Drill', { fill: '#fff', fontSize: 40 });
+        const drillDisplay = this.add.image(150, 510, 'drill').setOrigin(0.5);
+        drillDisplay.scale = 1.4;
         drillDisplay.setInteractive();
-        drillDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(drillAC) );
+        drillDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(drillAC) ).setOrigin(0.5);
 
-        const excavatorDisplay = this.add.text(50, 475, 'Excavator', { fill: '#fff', fontSize: 40 });
+        const excavatorDisplay = this.add.image(150, 585, 'excavator').setOrigin(0.5);
+        excavatorDisplay.scale = 1.4;
         excavatorDisplay.setInteractive();
-        excavatorDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(excavatorAC) );
+        excavatorDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(excavatorAC) ).setOrigin(0.5);
 
-        const cheesemineDisplay = this.add.text(50, 525, 'Cheese Mine', { fill: '#fff', fontSize: 40 });
+        const cheesemineDisplay = this.add.image(150, 660, 'cheesemine').setOrigin(0.5);
+        cheesemineDisplay.scale = 1.4;
         cheesemineDisplay.setInteractive();
-        cheesemineDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(cheesemineAC) );
+        cheesemineDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(cheesemineAC) ).setOrigin(0.5);
     },
 
     createBuildings: function() {
