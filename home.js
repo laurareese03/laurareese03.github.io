@@ -1,33 +1,25 @@
 var Home = new Phaser.Class({
+    
     Extends: Phaser.Scene,
     initialize: function() {
         Phaser.Scene.call(this, { "key": "Home" });
     },
     init: function() {},
     preload: function() {
-        var text = this.add.text(
-            640, 
-            360, 
-            "test", 
-            {
-                fontSize: 50,
-                color: "#000000",
-                fontStyle: "bold"
-            }
-        ).setOrigin(0.5);
+
     },
+    
     create: function() {
-        this.time.addEvent({
-            delay: 3000,
-            loop: false,
-            callback: () => {
-                this.scene.start("MainScene", { 
-                    "message": "Game Over" 
-                });
-                
-            }
-        })
+        const helloButton = this.add.text(640, 360, 'START', { fill: '#000', fontSize: 50 }).setOrigin(0.5);
+        helloButton.setInteractive();
+        helloButton.on('pointerdown', () => this.updateScene() );
     
     },
-    update: function() {}
+    update: function() {},
+
+    updateScene: function() { 
+        this.scene.start("MainScene", { 
+            "message": "Game Over" 
+        });
+    }
 });
