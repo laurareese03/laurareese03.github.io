@@ -1,6 +1,6 @@
 // don't let cheese Counter go below 0!!!!!
 
-var cheeseCounter, catCounter, autoclick_tiers, next_autoclick_tier_index;
+var cheeseCounter, catCounter, autoclick_tiers, autoclickers, next_autoclick_tier_index;
 var forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC
 var MainScene = new Phaser.Class({
     Extends: Phaser.Scene,
@@ -27,21 +27,21 @@ var MainScene = new Phaser.Class({
     },
 
     create: function() {
-        // set up background
-        const back_img = this.add.image(640, 360, 'space_back').setOrigin(0.5);
-        back_img.scale = 0.7
+      // set up background
+      const back_img = this.add.image(640, 360, 'space_back').setOrigin(0.5);
+      back_img.scale = 0.7
 
-        // set up cheese count
-        cheese_amount = 0;
-        cheese_per_sec = 0;
+      // set up cheese count
+      cheese_amount = 0;
+      cheese_per_sec = 0;
 
-        // set up cat amount
-        cat_amount = 1;
-        cats_per_sec = 0;
+      // set up cat amount
+      cat_amount = 1;
+      cats_per_sec = 0;
 
-        // Cheese Visual
-        const moon_img = this.add.image(640, 300, 'moon').setOrigin(0.5);
-        moon_img.scale = 3.5; 
+      // Cheese Visual
+      const moon_img = this.add.image(640, 300, 'moon').setOrigin(0.5);
+      moon_img.scale = 3.5; 
 
         // cat visual
         this.add.image(640, 125, 'cat').setOrigin(0.5);
@@ -55,7 +55,7 @@ var MainScene = new Phaser.Class({
       upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
 
       autoclick_tiers = [1,3,7,15,30,50,75,100,150]
-
+      
       // set up all objects for buying
       this.createAutoClickers();
       this.createBuildings();
@@ -66,11 +66,10 @@ var MainScene = new Phaser.Class({
       catCounter = this.add.text(640, 450, cat_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
 
       cheesepersecCounter = this.add.text(640, 600, cheese_per_sec, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
-
       autoclickers = [forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC]
       next_autoclick_tier_index = 1;
 
-        setInterval(this.updateStatsBySecond, 1000);
+      setInterval(this.updateStatsBySecond, 1000);
     
     },
     update: function() {
@@ -153,7 +152,7 @@ var MainScene = new Phaser.Class({
         cat_amount += cats_per_sec;
         console.log(cat_amount, autoclick_tiers[next_autoclick_tier_index])
         if (cat_amount >= autoclick_tiers[next_autoclick_tier_index]) {
-          console.log(autoclickers[next_autoclick_tier_index])
+          console.log(autoclickers[next_autoclick_tier_index], 'blah')
           autoclickers[next_autoclick_tier_index].setUnlock()
           next_autoclick_tier_index += 1;
         }
