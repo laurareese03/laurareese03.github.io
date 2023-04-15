@@ -34,7 +34,7 @@ class AutoClick {
     }
     setUnlock(){
       console.log('im trying here')
-        this.is_unlocked = true;
+      this.is_unlocked = true;
     }
 }
 
