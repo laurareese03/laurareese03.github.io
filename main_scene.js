@@ -346,12 +346,11 @@ var MainScene = new Phaser.Class({
 
         // MOUSE
         const mouseCP = new CatProgressive(0, 1, 0.083, 0, true);
-        console.log(mouseCP);
-        mouseCounter = this.add.text(1235, 135, "h" + mouseCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
-        mouseCost = this.add.text(900, 120, "help", { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
+        mouseCounter = this.add.text(1245, 135, mouseCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
+        mouseCost = this.add.text(900, 120, mouseCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
         const mouse_cheese = this.add.image(950, 135, 'moon').setOrigin(0.5);
         mouse_cheese.scale = 0.25; 
-        const mouseDisplay = this.add.image(1100, 135, 'mouse').setOrigin(0.5);
+        const mouseDisplay = this.add.image(1110, 135, 'mouse').setOrigin(0.5);
         mouseDisplay.scale = 1.4;
         mouseDisplay.setInteractive();
         mouseDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(mouseCP) );
