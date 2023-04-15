@@ -45,6 +45,7 @@ var MainScene = new Phaser.Class({
       // set up cat amount
       cat_amount = 1;
       cats_per_sec = 0;
+      max_cats = 1;
 
       // Cheese Visual
       const moon_img = this.add.image(640, 300, 'moon').setOrigin(0.5);
@@ -57,7 +58,7 @@ var MainScene = new Phaser.Class({
         moon_img.on('pointerdown', () => this.onClickCheese() );
 
       // building visual
-      const upgradebuildingBtn = this.add.text(640, 300, 'upgrade building', { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      const upgradebuildingBtn = this.add.text(640, 650, 'upgrade building', { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
       upgradebuildingBtn.setInteractive();
       upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
 
@@ -69,10 +70,10 @@ var MainScene = new Phaser.Class({
       this.createCatInstants();
       this.createCatProgressives();
 
-      cheeseCounter = this.add.text(640, 250, cheese_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
-      catCounter = this.add.text(640, 450, cat_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      cheeseCounter = this.add.text(640, 515, "Cheese: " + cheese_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      catCounter = this.add.text(640, 35, "Cats: " + cat_amount, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
 
-      cheesepersecCounter = this.add.text(640, 600, cheese_per_sec, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
+      cheesepersecCounter = this.add.text(640, 575, cheese_per_sec, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
       autoclickers = [forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC]
       next_autoclick_tier_index = 1;
 
@@ -80,9 +81,8 @@ var MainScene = new Phaser.Class({
     
     },
     update: function() {
-      // stats counters
-      cheeseCounter.setText(cheese_amount);
-      catCounter.setText(Math.floor(cat_amount));
+      cheeseCounter.setText("Cheese: " + cheese_amount);
+      catCounter.setText("Cats: " + Math.floor(cat_amount));
       cheesepersecCounter.setText(cheese_per_sec);
       // autoclicker counters
       forkCounter.setText(forkAC.owned);
@@ -122,14 +122,17 @@ var MainScene = new Phaser.Class({
     },
 
     onClickUpgradeBuilding: function() {
+        console.log(curr_building, buildings[curr_building], max_cats)
         // get the next building object
         next_building = buildings[curr_building + 1];
         // check enough cheese to buy
         if (cheese_amount >= next_building.cost) {
+            // remove funds
+            cheese_amount -= next_building.cost;
             // move current building location
             curr_building += 1;
             // update cat max
-            max_cats = curr_building.cat_limit;
+            max_cats = buildings[curr_building].cat_limit;
         }
     },
 
@@ -137,8 +140,8 @@ var MainScene = new Phaser.Class({
         console.log(item.cost);
         // get cost of item
         item_cost = item.cost;
-        // if enough cheese owned
-        if (cheese_amount >= item_cost) {
+        // if enough cheese owned and enough space for cats
+        if (cheese_amount >= item_cost && cat_amount < max_cats) {
             // subtract amount of cheese cost from owned
             cheese_amount -= item_cost;
             // increase number of cats
@@ -151,8 +154,8 @@ var MainScene = new Phaser.Class({
       if (item.is_unlocked) {
         // get cost of item
         item_cost = item.cost;
-        // if enough cheese owned
-        if (cheese_amount >= item_cost) {
+        // if enough cheese owned and space for cats
+        if (cheese_amount >= item_cost & cat_amount < max_cats) {
           // subtract amount of cheese cost from owned
           cheese_amount -= item_cost;
           // increase cats per second amount
@@ -165,8 +168,9 @@ var MainScene = new Phaser.Class({
     updateStatsBySecond: function() {
         // add cheese per second to cheese amount
         cheese_amount += cheese_per_sec;
-        // add cats per second to cats amount    
-        cat_amount += cats_per_sec;
+        // add cats per second to cats amount  
+        if (cat_amount < max_cats)  
+          cat_amount += cats_per_sec;
         console.log(cat_amount, autoclick_tiers[next_autoclick_tier_index])
         if (cat_amount >= autoclick_tiers[next_autoclick_tier_index]) {
           console.log(autoclickers[next_autoclick_tier_index], 'blah')
