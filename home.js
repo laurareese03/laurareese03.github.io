@@ -19,7 +19,7 @@ var Home = new Phaser.Class({
 
     updateScene: function() { 
         this.scene.start("MainScene", { 
-            "message": "Game Over" 
+            "message": "Start Game" 
         });
     }
 });
