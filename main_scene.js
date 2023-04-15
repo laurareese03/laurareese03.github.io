@@ -1,3 +1,7 @@
+// don't let cheese Counter go below 0!!!!!
+
+var cheeseCounter, catCounter, autoclick_tiers, next_autoclick_tier_index;
+var forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC
 var MainScene = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize: function() {
@@ -24,7 +28,7 @@ var MainScene = new Phaser.Class({
         cheese_per_sec = 0;
 
         // set up cat amount
-        cat_amount = 0;
+        cat_amount = 1;
         cats_per_sec = 0;
 
         // Cheese Visual
@@ -42,6 +46,22 @@ var MainScene = new Phaser.Class({
         cheeseCounter = this.add.text(640, 250, cheese_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
         catCounter = this.add.text(640, 450, cat_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
 
+        // Stats box
+        const statsBox = this.add.text(640, 500, 'stat', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
+
+        // Autoclickers
+        const autoClickers = this.add.text(200, 360, 'autoclicker', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
+
+        // CatStuff
+        const catStuff = this.add.text(1100, 360, 'cats!', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
+
+        cheeseCounter = this.add.text(640, 100, cheese_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
+        catCounter = this.add.text(640, 600, cat_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
+
+        autoclick_tiers = [1,3,7,15,30,50,75,100,150]
+        autoclickers = [forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC]
+        next_autoclick_tier_index = 1;
+
         // set up all objects for buying
         this.createAutoClickers();
         this.createBuildings();
@@ -52,8 +72,8 @@ var MainScene = new Phaser.Class({
     
     },
     update: function() {
-        cheeseCounter.setText(cheese_amount);
-        catCounter.setText(cat_amount);
+      cheeseCounter.setText(cheese_amount);
+      catCounter.setText(cat_amount);
     },
 
     // onclick of cheese
@@ -106,43 +126,45 @@ var MainScene = new Phaser.Class({
     },
 
     onClickBuyCatProgressive(item) {
-        // check if it's been unlocked
-        if (item.is_unlocked) {
-            // get cost of item
-            item_cost = item.cost;
-            // if enough cheese owned
-            if (cheese_amount >= item_cost) {
-                // subtract amount of cheese cost from owned
-                cheese_amount -= item_cost;
-                // increase cats per second amount
-                cats_per_sec += item.cats_per_sec;
-                // update displayed cats per minute
-
-            }
+      // check if it's been unlocked
+      if (item.is_unlocked) {
+        // get cost of item
+        item_cost = item.cost;
+        // if enough cheese owned
+        if (cheese_amount >= item_cost) {
+          // subtract amount of cheese cost from owned
+          cheese_amount -= item_cost;
+          // increase cats per second amount
+          cats_per_sec += item.cats_per_sec;
+          // update displayed cats per minute
         }
+      }
     },
 
     updateStatsBySecond: function() {
         // add cheese per second to cheese amount
         cheese_amount += cheese_per_sec;
-        // update cheese display value
-        
         // add cats per second to cats amount    
-        cat_amount += cats_per_sec
-        // update cat display value
+        cat_amount += cats_per_sec;
+        console.log(cat_amount, autoclick_tiers[next_autoclick_tier_index])
+        if (cat_amount >= autoclick_tiers[next_autoclick_tier_index]) {
+          console.log(autoclickers[next_autoclick_tier_index])
+          autoclickers[next_autoclick_tier_index].setUnlock()
+          next_autoclick_tier_index += 1;
+        }
         
     },
 
     createAutoClickers: function() {
-        forkAC = new AutoClick(1, 1, 1, 1, true);
-        spoonAC = new AutoClick(1, 1, 1, 1, true);
-        sporkAC = new AutoClick(1, 1, 1, 1, true);
-        shovelAC = new AutoClick(1, 1, 1, 1, true);
-        pickaxeAC = new AutoClick(1, 1, 1, 1, true);
-        jackhammerAC = new AutoClick(1, 1, 1, 1, true);
-        drillAC = new AutoClick(1, 1, 1, 1, true);
-        excavatorAC = new AutoClick(1, 1, 1, 1, true);
-        cheesemineAC = new AutoClick(1, 1, 1, 1, true);
+        forkAC = new AutoClick(1, autoclick_tiers[0], 1, 0, true);
+        spoonAC = new AutoClick(3, autoclick_tiers[1], 1, 0, false);
+        sporkAC = new AutoClick(5, autoclick_tiers[2], 1, 0, false);
+        shovelAC = new AutoClick(10, autoclick_tiers[3], 1, 0, false);
+        pickaxeAC = new AutoClick(50, autoclick_tiers[4], 1, 0, false);
+        jackhammerAC = new AutoClick(100, autoclick_tiers[5], 1, 0, false);
+        drillAC = new AutoClick(500, autoclick_tiers[6], 1, 0, false);
+        excavatorAC = new AutoClick(1000, autoclick_tiers[7], 1, 0, false);
+        cheesemineAC = new AutoClick(5000, autoclick_tiers[8], 1, 0, false);
 
         // Autoclickers
         const button_fork = this.add.image(100, 150, 'button');

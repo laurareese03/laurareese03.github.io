@@ -12,7 +12,6 @@ class AutoClick {
     }
 
     //getters
-
     get Base(){
         return this.base_output;
     };
@@ -28,13 +27,14 @@ class AutoClick {
     get Owned(){
         return this.owned;
     }
-    //setters
 
+    //setters
     setUnlockCost(unlock_cost){
         this.unlock_cost = unlock_cost;
     }
     setUnlock(){
-        this.is_unlocked = this.is_unlocked;
+      console.log('im trying here')
+        this.is_unlocked = true;
     }
 }
 
