@@ -28,8 +28,14 @@ var MainScene = new Phaser.Class({
         // building upgrades
         this.load.image('cardboardbox', 'assets/cardboard_box.png');
         this.load.image('cathouse', 'assets/cathouse.png');
-        this.load.image('shed', 'assets/shed.png');
+        this.load.image('shed', 'assets/Shed.png');
+        this.load.image('house', 'assets/House.png');
+        this.load.image('shed', 'assets/barn.png');
+        this.load.image('apartment', 'assets/Apartment.png');
+        this.load.image('catopia', 'assets/catopia.png');
         // cat items
+        this.load.image('mouse', 'assets/mouse.png');
+        this.load.image('laserpointer', 'assets/laser_pointer.png');
 
     },
 
@@ -86,14 +92,14 @@ var MainScene = new Phaser.Class({
       cheesepersecCounter.setText(cheese_per_sec);
       // autoclicker counters
       forkCounter.setText(forkAC.owned);
-      //spoonCounter.setText(spoonAC.owned);
-      //sporkCounter.setText(sporkAC.owned);
-      //shovelCounter.setText(shovelAC.owned);
-      //pickaxeCounter.setText(pickaxeAC.owned);
-      //jackhammerCounter.setText(jackhammerAC.owned);
-      //drillCounter.setText(drillAC.owned);
-      //excavatorCounter.setText(excavatorAC.owned);
-      //cheeseCounter.setText(cheesemineAC.owned);
+      spoonCounter.setText(spoonAC.owned);
+      sporkCounter.setText(sporkAC.owned);
+      shovelCounter.setText(shovelAC.owned);
+      pickaxeCounter.setText(pickaxeAC.owned);
+      jackhammerCounter.setText(jackhammerAC.owned);
+      drillCounter.setText(drillAC.owned);
+      excavatorCounter.setText(excavatorAC.owned);
+      cheesemineCounter.setText(cheesemineAC.owned);
     },
 
     // onclick of cheese
@@ -292,77 +298,99 @@ var MainScene = new Phaser.Class({
         const shedB = new Building(1, 100);
         const houseB = new Building(1, 500);
         const barnB = new Building(1, 1000);
-        const studioApartmentComplexB = new Building(1, 5000);
+        const apartmentB = new Building(1, 5000);
         const catopiaB = new Building(1, 15000);
 
         buildings = [];
-        buildings.push(cardboardboxB, catCaveB, shedB, houseB, barnB, studioApartmentComplexB, catopiaB);
+        buildings.push(cardboardboxB, catCaveB, shedB, houseB, barnB, apartmentB, catopiaB);
     },
 
     createCatInstants: function() {
+        // TREAT
         let treatCI = new CatInstant(1, 1);   
         const treatDisplay = this.add.text(1100, 50, 'Treat', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         treatDisplay.setInteractive();
         treatDisplay.on('pointerdown', () => this.onClickBuyCatInstant(treatCI) );
 
+        /*
+        // TREAT PILE
         let treatpileCI = new CatInstant(1, 1);
         const treatpileDisplay = this.add.text(1100, 100, 'Treat Pile', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         treatpileDisplay.setInteractive();
         treatpileDisplay.on('pointerdown', () => this.onClickBuyCatInstant(treatpileCI) );        
 
+        // CHEESE WHEEL
         let cheesewheelCI = new CatInstant(1, 1);
         const cheesewheelDisplay = this.add.text(1100, 150, 'Cheese Wheel', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         cheesewheelDisplay.setInteractive();
         cheesewheelDisplay.on('pointerdown', () => this.onClickBuyCatInstant(cheesewheelCI) );
 
+        // CATNIP
         let catnipCI = new CatInstant(1, 1);
         const catnipDisplay = this.add.text(1100, 200, 'Catnip', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         catnipDisplay.setInteractive();
-        catnipDisplay.on('pointerdown', () => this.onClickBuyCatInstant(catnipCI) );
+        catnipDisplay.on('pointerdown', () => this.onClickBuyCatInstant(catnipCI) );*/
 
     }, 
 
     createCatProgressives: function() {
+        // BALL
         const ballCP = new CatProgressive(1, 0.033, 0, true);
+        //ballCounter = this.add.text(35, 60, ballCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
+        //ballCost = this.add.text(290, 45, ballCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
+        //const ball_cheese = this.add.image(317, 60, 'moon').setOrigin(0.5);
+        //ball_cheese.scale = 0.25; 
         const ballDisplay = this.add.text(1100, 250, 'Ball', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         ballDisplay.setInteractive();
         ballDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(ballCP) );
 
+        // MOUSE
         const mouseCP = new CatProgressive(1, 0.083, 0, true);
-        const mouseDisplay = this.add.text(1100, 300, 'Mouse', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        mouseCounter = this.add.text(1245, 135, mouseCP.owned, { fill: '#fff', fontSize: 35, fontFamily: "American Typewriter" }).setOrigin(0.5);
+        mouseCost = this.add.text(990, 120, mouseCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
+        const mouse_cheese = this.add.image(320, 135, 'moon').setOrigin(0.5);
+        mouse_cheese.scale = 0.25; 
+        const spoonDisplay = this.add.image(1100, 300, 'mouse').setOrigin(0.5);
         mouseDisplay.setInteractive();
         mouseDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(mouseCP) );
 
-        const ponytailholderCP = new CatProgressive(1, 0.17, 0, true);
-        const ponytailholderDisplay = this.add.text(1100, 350, 'Ponytail Holder', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
-        ponytailholderDisplay.setInteractive();
-        ponytailholderDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(ponytailholderCP) );
+        // HAIR TIE
+        const hairtieCP = new CatProgressive(1, 0.17, 0, true);
+        const hairtieDisplay = this.add.text(1100, 350, 'Hair Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        hairtieDisplay.setInteractive();
+        hairtieDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(hairtieCP) );
 
+        // TWIST TIE
         const twisttieCP = new CatProgressive(1, 1, 0.33, true);
         const twisttieDisplay = this.add.text(1100, 400, 'Twist Tie', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         twisttieDisplay.setInteractive();
         twisttieDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(twisttieCP) );
 
+        // LASER POINTER
         const laserpointerCP = new CatProgressive(1, 0.5, 0, true);
         const laserpointerDisplay = this.add.text(1100, 450, 'Laser Pointer', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         laserpointerDisplay.setInteractive();
         laserpointerDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(laserpointerCP) );
 
+        // CUSHION
         const cushionCP = new CatProgressive(1, 1, 0.83, true);
         const cushionDisplay = this.add.text(1100, 500, 'Cushion', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         cushionDisplay.setInteractive();
         cushionDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(cushionCP) );
 
+        // KEYBOARD
         const keyboardCP = new CatProgressive(1, 1, 1.67, true);
         const keyboardDisplay = this.add.text(1100, 550, 'Keyboard', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         keyboardDisplay.setInteractive();
         keyboardDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(keyboardCP) );
 
+        // SCRATCHER
         const scratcherCP = new CatProgressive(1, 1, 2.5, true);
         const scratcherDisplay = this.add.text(1100, 600, 'Scratcher', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         scratcherDisplay.setInteractive();
         scratcherDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(scratcherCP) );
 
+        // TREE
         const treeCP = new CatProgressive(1, 1, 3.33, true);
         const treeDisplay = this.add.text(1100, 650, 'Tree', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
         treeDisplay.setInteractive();
