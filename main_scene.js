@@ -15,6 +15,7 @@ var MainScene = new Phaser.Class({
         this.load.image('space_back', 'assets/space_back2.jpg');
         this.load.image('moon', 'assets/moon.png');
         this.load.image('button', 'assets/Button.png');
+        this.load.image('cat', 'assets/cat.png');
     },
 
     create: function() {
@@ -31,11 +32,11 @@ var MainScene = new Phaser.Class({
         cats_per_sec = 0;
 
         // Cheese Visual
-        const moon_img = this.add.image(640, 200, 'moon').setOrigin(0.5);
-        const cheeseBtn = this.add.text(640, 200, 'cheese', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
+        const moon_img = this.add.image(640, 250, 'moon').setOrigin(0.5);
+        moon_img.scale = 3.5; 
 
-        cheeseBtn.setInteractive();
-        cheeseBtn.on('pointerdown', () => this.onClickCheese() );
+        moon_img.setInteractive();
+        moon_img.on('pointerdown', () => this.onClickCheese() );
 
         // building visual
         const upgradebuildingBtn = this.add.text(640, 300, 'upgrade building', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
@@ -44,18 +45,6 @@ var MainScene = new Phaser.Class({
 
         cheeseCounter = this.add.text(640, 250, cheese_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
         catCounter = this.add.text(640, 450, cat_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-
-        // Stats box
-        const statsBox = this.add.text(640, 500, 'stat', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-
-        // Autoclickers
-        const autoClickers = this.add.text(200, 360, 'autoclicker', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-
-        // CatStuff
-        const catStuff = this.add.text(1100, 360, 'cats!', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-
-        cheeseCounter = this.add.text(640, 100, cheese_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-        catCounter = this.add.text(640, 600, cat_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
 
         autoclick_tiers = [1,3,7,15,30,50,75,100,150]
         autoclickers = [forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC]
