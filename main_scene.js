@@ -97,16 +97,6 @@ var MainScene = new Phaser.Class({
       upgradebuildingBtn = this.add.image(640, 650, buildings[curr_building].image, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
       upgradebuildingBtn.setInteractive();
       upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
-
-      // building visual
-      upgradebuildingBtn = this.add.image(640, 650, buildings[curr_building].image, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
-      upgradebuildingBtn.setInteractive();
-      upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
-
-      // building visual
-      upgradebuildingBtn = this.add.image(640, 650, buildings[curr_building].image, { fill: '#fff', fontSize: 50, fontFamily: "American Typewriter" }).setOrigin(0.5);
-      upgradebuildingBtn.setInteractive();
-      upgradebuildingBtn.on('pointerdown', () => this.onClickUpgradeBuilding() );
       upgradebuildingPrice = this.add.text(720, 672, buildings[curr_building].cost, { fill: '#000', fontSize: 15, fontFamily: "American Typewriter" }).setOrigin(0.5);
 
       cheeseCounter = this.add.text(640, 515, "Cheese: " + cheese_amount + " (" + cheese_per_sec + "/sec)", { fill: '#fff', fontSize: 40, fontFamily: "American Typewriter" }).setOrigin(0.5);
