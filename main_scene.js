@@ -347,6 +347,7 @@ var MainScene = new Phaser.Class({
     createCatInstants: function() {
         // TREAT
         treatCI = new CatInstant(5, 1);   
+        this.add.text(465, 60, '5->1', { fill: '#fff', fontSize: 20 }).setOrigin();
         const treatDisplay = this.add.image(400, 60, 'treat').setOrigin(0.5);
         treatDisplay.scale = 1.4;
         treatDisplay.setInteractive();
@@ -354,6 +355,7 @@ var MainScene = new Phaser.Class({
 
         // TREAT PILE
         treatpileCI = new CatInstant(25, 5);
+        this.add.text(470, 135, '25->5', { fill: '#fff', fontSize: 20 }).setOrigin();
         const treatpileDisplay = this.add.image(400, 135, 'treatpile').setOrigin(0.5);
         treatpileDisplay.scale = 1.4;
         treatpileDisplay.setInteractive();
@@ -361,14 +363,16 @@ var MainScene = new Phaser.Class({
 
         // CHEESE WHEEL
         cheesewheelCI = new CatInstant(100, 15);
-        const cheesewheelDisplay = this.add.image(880, 60, 'cheesewheel', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        this.add.text(800, 60, '100->15', { fill: '#fff', fontSize: 20 }).setOrigin();
+        const cheesewheelDisplay = this.add.image(880, 60, 'cheesewheel').setOrigin(0.5);
         cheesewheelDisplay.scale = 1.4;
         cheesewheelDisplay.setInteractive();
         cheesewheelDisplay.on('pointerdown', () => this.onClickBuyCatInstant(cheesewheelCI) );
 
         // CATNIP
         catnipCI = new CatInstant(200, 30);
-        const catnipDisplay = this.add.image(880, 135, 'catnip', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        this.add.text(800, 135, '200->30', { fill: '#fff', fontSize: 20 }).setOrigin();
+        const catnipDisplay = this.add.image(880, 135, 'catnip').setOrigin(0.5);
         catnipDisplay.scale = 1.4;
         catnipDisplay.setInteractive();
         catnipDisplay.on('pointerdown', () => this.onClickBuyCatInstant(catnipCI) );
