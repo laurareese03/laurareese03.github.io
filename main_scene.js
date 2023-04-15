@@ -83,12 +83,9 @@ var MainScene = new Phaser.Class({
         console.log(item.cost);
         // get cost of item
         item_cost = item.cost;
-        item_cost = item.cost;
         // if enough cheese owned
         if (cheese_amount >= item_cost) {
-        if (cheese_amount >= item_cost) {
             // subtract amount of cheese cost from owned
-            cheese_amount -= item_cost;
             cheese_amount -= item_cost;
             // increase number of cats
             cat_amount += item.num_cats;
