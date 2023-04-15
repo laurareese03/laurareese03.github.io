@@ -46,18 +46,6 @@ var MainScene = new Phaser.Class({
         cheeseCounter = this.add.text(640, 250, cheese_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
         catCounter = this.add.text(640, 450, cat_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
 
-        // Stats box
-        const statsBox = this.add.text(640, 500, 'stat', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-
-        // Autoclickers
-        const autoClickers = this.add.text(200, 360, 'autoclicker', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-
-        // CatStuff
-        const catStuff = this.add.text(1100, 360, 'cats!', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-
-        cheeseCounter = this.add.text(640, 100, cheese_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-        catCounter = this.add.text(640, 600, cat_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-
         autoclick_tiers = [1,3,7,15,30,50,75,100,150]
         autoclickers = [forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC]
         next_autoclick_tier_index = 1;
