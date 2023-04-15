@@ -341,7 +341,7 @@ var MainScene = new Phaser.Class({
         const catopiaB = new Building(1000, 15000, 'catopia');
 
         buildings = [];
-        buildings.push(cardboardboxB, catCaveB, shedB, houseB, barnB, apartmentB, catopiaB);
+        buildings.push(cardboardboxB, catCaveB, shedB, houseB, barnB, apartmentB, catopiaB, "");
     },
 
     createCatInstants: function() {
