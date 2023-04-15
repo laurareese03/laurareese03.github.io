@@ -233,7 +233,7 @@ var MainScene = new Phaser.Class({
         shovelAC = new AutoClick(10, autoclick_tiers[3], 20, 0, false, 'lockedshovel', 'shovel');
         pickaxeAC = new AutoClick(50, autoclick_tiers[4], 50, 0, false, 'lockedpickaxe', 'pickaxe');
         jackhammerAC = new AutoClick(100, autoclick_tiers[5], 75, 0, false, 'lockedjackhammer', 'jackhammer');
-        drillAC = new AutoClick(500, autoclick_tiers[6], 1, 0, false, 'lockeddrill', 'drill');
+        drillAC = new AutoClick(500, autoclick_tiers[6], 100, 0, false, 'lockeddrill', 'drill');
         excavatorAC = new AutoClick(1000, autoclick_tiers[7], 150, 0, false, 'lockedexcavator', 'excavator');
         cheesemineAC = new AutoClick(5000, autoclick_tiers[8], 250, 0, false, 'lockedcheesemine', 'cheesemine');
 
