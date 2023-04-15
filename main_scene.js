@@ -21,6 +21,7 @@ var MainScene = new Phaser.Class({
         // autoclickers
         this.load.image('fork', 'assets/fork.png');
         this.load.image('spoon', 'assets/spoon.png');
+        this.load.image('spork', 'assets/spork.png')
         this.load.image('shovel', 'assets/shovel.png');
         this.load.image('pickaxe', 'assets/pickaxe.png');
         this.load.image('jackhammer', 'assets/jackhammer.png');
