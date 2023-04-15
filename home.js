@@ -6,7 +6,6 @@ var Home = new Phaser.Class({
     },
     init: function() {},
     preload: function() {
-
     },
     
     create: function() {
