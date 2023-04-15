@@ -20,6 +20,10 @@ var MainScene = new Phaser.Class({
         this.load.image('spoon', 'assets/spoon.png');
         this.load.image('shovel', 'assets/shovel.png');
         this.load.image('pickaxe', 'assets/pickaxe.png');
+        this.load.image('jackhammer', 'assets/jackhammer.png');
+        this.load.image('drill', 'assets/drill.png');
+        this.load.image('excavator', 'assets/excavator.png');
+        this.load.image('cheesemine', 'assets/cheesemine.png');
     },
 
     create: function() {
@@ -162,45 +166,49 @@ var MainScene = new Phaser.Class({
         cheesemineAC = new AutoClick(5000, autoclick_tiers[8], 1, 0, false);
 
         // Autoclickers
-        const forkDisplay = this.add.image(150, 100, 'fork').setOrigin(0.5);
+        const forkDisplay = this.add.image(150, 60, 'fork').setOrigin(0.5);
         forkDisplay.scale = 1.4;
         forkDisplay.setInteractive();
         forkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(forkAC) );
 
-        const spoonDisplay = this.add.image(150, 175, 'spoon').setOrigin(0.5);
+        const spoonDisplay = this.add.image(150, 135, 'spoon').setOrigin(0.5);
         spoonDisplay.scale = 1.4;
         spoonDisplay.setInteractive();
         spoonDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(spoonAC) );
 
-        const sporkDisplay = this.add.image(150, 250, 'spoon').setOrigin(0.5);
+        const sporkDisplay = this.add.image(150, 210, 'spoon').setOrigin(0.5);
         sporkDisplay.scale = 1.4;
         sporkDisplay.setInteractive();
         sporkDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(sporkAC) ).setOrigin(0.5);
 
-        const shovelDisplay = this.add.image(150, 325, 'shovel').setOrigin(0.5);
+        const shovelDisplay = this.add.image(150, 285, 'shovel').setOrigin(0.5);
         shovelDisplay.scale = 1.4;
         shovelDisplay.setInteractive();
         shovelDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(shovelAC) );
         spoonDisplay.scale = 1.4;
 
-        const pickaxeDisplay = this.add.image(150, 400, 'pickaxe').setOrigin(0.5);
+        const pickaxeDisplay = this.add.image(150, 360, 'pickaxe').setOrigin(0.5);
         pickaxeDisplay.scale = 1.4;
         pickaxeDisplay.setInteractive();
         pickaxeDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(pickaxeAC) );
 
-        const jackhammerDisplay = this.add.text(150, 450, 'Jackhammer', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        const jackhammerDisplay = this.add.image(150, 435, 'jackhammer').setOrigin(0.5);
+        jackhammerDisplay.scale = 1.4;
         jackhammerDisplay.setInteractive();
         jackhammerDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(jackhammerAC) ).setOrigin(0.5);
 
-        const drillDisplay = this.add.text(150, 500, 'Drill', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        const drillDisplay = this.add.image(150, 510, 'drill').setOrigin(0.5);
+        drillDisplay.scale = 1.4;
         drillDisplay.setInteractive();
         drillDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(drillAC) ).setOrigin(0.5);
 
-        const excavatorDisplay = this.add.text(150, 475, 'Excavator', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        const excavatorDisplay = this.add.image(150, 585, 'excavator').setOrigin(0.5);
+        excavatorDisplay.scale = 1.4;
         excavatorDisplay.setInteractive();
         excavatorDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(excavatorAC) ).setOrigin(0.5);
 
-        const cheesemineDisplay = this.add.text(150, 525, 'Cheese Mine', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        const cheesemineDisplay = this.add.image(150, 660, 'cheesemine').setOrigin(0.5);
+        cheesemineDisplay.scale = 1.4;
         cheesemineDisplay.setInteractive();
         cheesemineDisplay.on('pointerdown', () => this.onClickBuyAutoClicker(cheesemineAC) ).setOrigin(0.5);
     },
