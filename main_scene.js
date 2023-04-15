@@ -54,8 +54,8 @@ var MainScene = new Phaser.Class({
         this.load.image('tree', 'assets/tree.png');
         // cat items - instant
         this.load.image('treat', 'assets/treat.png');
-        this.load.image('treatpile', 'assets/treatpile.png');
-        this.load.image('cheesewheel', 'assets/cheesewheel.png');
+        this.load.image('treatpile', 'assets/treat_pile.png');
+        this.load.image('cheesewheel', 'assets/cheese_wheel.png');
         this.load.image('catnip', 'assets/catnip.png');
     },
 
@@ -351,25 +351,29 @@ var MainScene = new Phaser.Class({
     createCatInstants: function() {
         // TREAT
         treatCI = new CatInstant(5, 1);   
-        const treatDisplay = this.add.image(400, 50, 'treat').setOrigin(0.5);
+        const treatDisplay = this.add.image(400, 60, 'treat').setOrigin(0.5);
+        treatDisplay.scale = 1.4;
         treatDisplay.setInteractive();
         treatDisplay.on('pointerdown', () => this.onClickBuyCatInstant(treatCI) );
 
         // TREAT PILE
         treatpileCI = new CatInstant(25, 5);
-        const treatpileDisplay = this.add.image(400, 100, 'treatpile').setOrigin(0.5);
+        const treatpileDisplay = this.add.image(400, 135, 'treatpile').setOrigin(0.5);
+        treatpileDisplay.scale = 1.4;
         treatpileDisplay.setInteractive();
         treatpileDisplay.on('pointerdown', () => this.onClickBuyCatInstant(treatpileCI) );        
 
         // CHEESE WHEEL
         cheesewheelCI = new CatInstant(100, 15);
-        const cheesewheelDisplay = this.add.image(880, 50, 'cheesewheel', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        const cheesewheelDisplay = this.add.image(880, 60, 'cheesewheel', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        cheesewheelDisplay.scale = 1.4;
         cheesewheelDisplay.setInteractive();
         cheesewheelDisplay.on('pointerdown', () => this.onClickBuyCatInstant(cheesewheelCI) );
 
         // CATNIP
         catnipCI = new CatInstant(200, 30);
-        const catnipDisplay = this.add.image(880, 100, 'catnip', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        const catnipDisplay = this.add.image(880, 135, 'catnip', { fill: '#fff', fontSize: 40 }).setOrigin(0.5);
+        catnipDisplay.scale = 1.4;
         catnipDisplay.setInteractive();
         catnipDisplay.on('pointerdown', () => this.onClickBuyCatInstant(catnipCI) );
 
@@ -384,7 +388,7 @@ var MainScene = new Phaser.Class({
         ballCost = this.add.text(957, 45, ballCP.cost, { fill: '#fff', fontSize: 30, fontFamily: "American Typewriter" });
         const ball_cheese = this.add.image(985, 60, 'moon').setOrigin(0.5);
         ball_cheese.scale = 0.25; 
-        const ballDisplay = this.add.image(1100, 60, 'ball').setOrigin(0.5);
+        const ballDisplay = this.add.image(1110, 60, 'ball').setOrigin(0.5);
         ballDisplay.scale = 1.4;
         ballDisplay.setInteractive();
         ballDisplay.on('pointerdown', () => this.onClickBuyCatProgressive(ballCP) );
