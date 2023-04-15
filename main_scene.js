@@ -1,7 +1,7 @@
 // don't let cheese Counter go below 0!!!!!
 
 var cheeseCounter, catCounter, autoclick_tiers, next_autoclick_tier_index;
-
+var forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC
 var MainScene = new Phaser.Class({
     Extends: Phaser.Scene,
     initialize: function() {
@@ -57,15 +57,15 @@ var MainScene = new Phaser.Class({
         cheeseCounter = this.add.text(640, 100, cheese_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
         catCounter = this.add.text(640, 600, cat_amount, { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
 
+        autoclick_tiers = [1,3,7,15,30,50,75,100,150]
+        autoclickers = [forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC]
+        next_autoclick_tier_index = 1;
+
         // set up all objects for buying
         this.createAutoClickers();
         this.createBuildings();
         this.createCatInstants();
         this.createCatProgressives();
-
-        autoclick_tiers = [1,3,7,15,30,50,75,100,150]
-        autoclickers = [forkAC, spoonAC, sporkAC,  shovelAC, pickaxeAC, jackhammerAC, drillAC, excavatorAC, cheesemineAC]
-        next_autoclick_tier_index = 1;
 
         setInterval(this.updateStatsBySecond, 1000);
     
