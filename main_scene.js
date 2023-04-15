@@ -32,19 +32,13 @@ var MainScene = new Phaser.Class({
         // Stats box
         const statsBox = this.add.text(640, 500, 'stat', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
 
-        // Autoclickers
-        const autoClickers = this.add.text(200, 360, 'autoclicker', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-
-        // CatStuff
-        const catStuff = this.add.text(1100, 360, 'cats!', { fill: '#fff', fontSize: 50 }).setOrigin(0.5);
-
         // set up all objects for buying
         this.createAutoClickers();
         this.createBuildings();
         this.createCatInstants();
         this.createCatProgressives();
 
-        //setInterval(this.updateStatsBySecond, 1000);
+        setInterval(this.updateStatsBySecond, 1000);
     
     },
     update: function() {},
@@ -102,7 +96,7 @@ var MainScene = new Phaser.Class({
                 // subtract amount of cheese cost from owned
                 cheese_amount -= item_cost;
                 // increase cats per second amount
-                
+                cats_per_sec += item.cats_per_sec;
                 // update displayed cats per minute
 
             }
@@ -113,11 +107,11 @@ var MainScene = new Phaser.Class({
         // add cheese per second to cheese amount
         cheese_amount += cheese_per_sec;
         // update cheese display value
-
+        console.log(cheese_amount);
         // add cats per second to cats amount    
-        
+        cat_amount += cats_per_sec
         // update cat display value
-        
+        console.log(cat_amount);
     },
 
     createAutoClickers: function() {
