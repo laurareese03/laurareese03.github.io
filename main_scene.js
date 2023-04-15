@@ -90,8 +90,6 @@ var MainScene = new Phaser.Class({
             // increase number of cats
             cat_amount += item.num_cats;
         }
-            cat_amount += item.num_cats;
-        }
     },
 
     onClickBuyCatProgressive(item) {
