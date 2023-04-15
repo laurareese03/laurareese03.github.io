@@ -10,7 +10,6 @@ class AutoClick {
         this.owned = owned;
         this.is_unlocked = is_unlocked;
     }
-
     //getters
     get Base(){
         return this.base_output;
@@ -24,7 +23,7 @@ class AutoClick {
     get Unlock(){
         return this.is_unlocked;
     }
-    get Owned(){
+    getOwned(){
         return this.owned;
     }
 
